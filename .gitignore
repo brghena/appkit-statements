@@ -1,0 +1,5 @@
+latex.out/
+paper.pdf
+*.swp
+.latexrun.db.lock
+TODO.md

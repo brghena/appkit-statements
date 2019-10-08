@@ -1,0 +1,70 @@
+% Allow figure placement to be separated from figure definition
+% http://tex.stackexchange.com/questions/362533/separating-definition-and-placement-of-a-figure
+%
+% To use:
+% \begin{definefigure}{<FIGURE LABEL>}
+%  ...
+% \end{definefigure}
+%
+% Then elsewhere in the document (even earlier in prior sections}:
+% \placefigure[t]{<FIGURE LABEL>}
+%
+% Note: you do not need to call \label in the figure anymore
+%
+% Supported right now are definefigure, definefigure*, definetable, and definetable*
+% (the same \placefigure command applies to all of them)
+%
+\makeatletter
+\newwrite\remember@figures
+\AtBeginDocument{%
+  \InputIfFileExists{\jobname.dft}{}{}%
+  \immediate\openout\remember@figures=\jobname.dft
+}
+\AtEndDocument{\immediate\closeout\remember@figures}
+
+\newcommand{\placefigure}[2][tp]{%
+    \csname remembered@figure@#2\endcsname{#1}
+}
+
+\NewEnviron{definefigure}[1]{%
+  \immediate\write\remember@figures{%
+    \noexpand\rememberfigure{#1}{\unexpanded\expandafter{\BODY}}%
+  }%
+}
+\NewEnviron{definefigure*}[1]{%
+  \immediate\write\remember@figures{%
+    \noexpand\rememberfigurestar{#1}{\unexpanded\expandafter{\BODY}}%
+  }%
+}
+\NewEnviron{definetable}[1]{%
+  \immediate\write\remember@figures{%
+    \noexpand\remembertable{#1}{\unexpanded\expandafter{\BODY}}%
+  }%
+}
+\NewEnviron{definetable*}[1]{%
+  \immediate\write\remember@figures{%
+    \noexpand\remembertablestar{#1}{\unexpanded\expandafter{\BODY}}%
+  }%
+}
+
+\newcommand{\rememberfigure}[2]{%
+  \global\@namedef{remembered@figure@#1}##1{%
+    \begin{figure}[##1]#2\label{#1}\end{figure}%
+  }%
+}
+\newcommand{\rememberfigurestar}[2]{%
+  \global\@namedef{remembered@figure@#1}##1{%
+    \begin{figure*}[##1]#2\label{#1}\end{figure*}%
+  }%
+}
+\newcommand{\remembertable}[2]{%
+  \global\@namedef{remembered@figure@#1}##1{%
+    \begin{table}[##1]#2\label{#1}\end{table}%
+  }%
+}
+\newcommand{\remembertablestar}[2]{%
+  \global\@namedef{remembered@figure@#1}##1{%
+    \begin{table*}[##1]#2\label{#1}\end{table*}%
+  }%
+}
+\makeatother
