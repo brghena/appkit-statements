@@ -1,4 +1,4 @@
-\documentclass{article} % Default font size is 12 pt, it can be changed here
+\documentclass[12pt]{article} % Default font size is 10 pt, it can be changed here
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 
 \usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
@@ -37,7 +37,7 @@
 \usepackage{rotating}     % Rotates any object, note sideways != sidewaysfigure
 %\usepackage[all=normal]{savetrees} % For when space is tight, read manual and
                           % selectively enable things. CAN BREAK CONF STYLES!!
-\usepackage{siunitx}      % SI units and significant figures
+%\usepackage{siunitx}      % SI units and significant figures
 \usepackage{soul}         % Provides \hl{} for highlighting
 \usepackage[subrefformat=parens]{subcaption}   % Replaces both subfig and subfigure
 \usepackage{tabularx}     % Complicated table creation
@@ -50,6 +50,9 @@
 \usepackage{xspace}
 \usepackage{xfrac}
 
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
 % https://tex.stackexchange.com/questions/74170/have-new-line-between-paragraphs-no-indentation
 \usepackage[parfill]{parskip}
 
@@ -60,6 +63,18 @@
 \usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
 \hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+% Stylize footnotes
+\makeatletter
+% Default:
+% \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\renewcommand{\@makefnmark}{\makebox{\normalfont[\textcolor{red}{\@thefnmark}]}}
+\renewcommand\@makefntext[1]{%
+  \parindent 1em\noindent
+            \hb@xt@1.8em{%
+              \hss\normalfont\textcolor{red}{\@thefnmark}}~#1}
+\makeatother
+
 
 \graphicspath{{./img/}} % Specifies the directory where pictures are stored
 
@@ -100,14 +115,186 @@
 % No number first page
 \thispagestyle{empty}
 
-\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
-  \large \textbf{\textsf{ Teaching Statement }} &
-  \large \textbf{\textsf{ \href{https://patpannuto.com}{Pat Pannuto} }} &
-  \large \textbf{\textsf{ \href{mailto:ppannuto@berkeley.edu}{ppannuto@berkeley.edu} }} \\
-  \toprule
-\end{tabular*}
+\begin{center}
+  \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
+    \large \textbf{\textsf{ Research Statement }} &
+    \large \textbf{\textsf{ Branden Ghena }} &
+    \large \textbf{\textsf{ brghena@berkeley.edu }} \\
+    \toprule
+  \end{tabular*}
+\end{center}
 
-TEST
+I have always been drawn to the intersection of computers and the real world.
+One aspect that has always drawn me to the area was the many domains of
+expertise that are combined in order to create an embedded system. In the
+course of my research, I've worked on circuits and websites and everything in
+between.
+
+My research focuses on two areas: investigations of low-power networking
+standards and platforms for enabling future research.
+
+\textbf{\textsf{\large Low-Power Networking Standards.}}\\ Early research in
+wireless sensor networks focused on the creation of new network standards,
+especially access control mechanisms. Today, many of these techniques have been
+incorporated into wireless networking standards and the sensor network world
+can, for the first time, consider the use of existing standards rather than the
+development of new ones to meet application needs. My interest has been the
+study of these existing network schemes in order to determine which
+applications they can best serve and where they are still lacking.
+
+\textbf{Low-Power Wide-Area Networks} (LPWANs) address a major deficit in prior wireless
+networks: wide-area machine-to-machine communications. While solutions exist in
+the local-area realm, human-centric cellular networks that focus on download
+throughput have long been the only players if long-range communications are
+desired. Over the last several years, however, protocols like LoRaWAN that
+operate on the unlicensed 915 MHz band in the United States have grown to fill
+this void. Their use of simple protocols and ability to transmit at ranges over
+a kilometer while drawing only a few hundred milliwatts enables exciting new
+applications. [FIGURE Range vs Throughput]
+
+However, as we investigated these new networks, we realized that they face
+problems when attempting to serve real-world applications[Mobicom'19]. As we
+began our investigations, we realized a new metric was needed. Neither range
+nor throughput were sufficient metrics for studying LPWANs. We defined bit
+flux, a measure of throughput over coverage area as a way of comparing them.
+This metric can also be used to measure application needs which allows
+suitability to be easily measured. Comparing the bit flux requirements of
+several example applications and the bit flux that LPWANs provide, we find that
+unlicensed LPWANs are only suitable for low-rate, sparse sensing applications. 
+
+LPWANs are suffering from two major issues. The first is a capacity issue:
+low-throughput over a very wide area results in a very limited amount of
+throughput available to each deployed device. In addition to the capacity
+issues, LPWANs deployed in the unlicensed bands face a coexistence problem. The
+long range of these networks means that many stakeholders will overlap in
+network coverage areas, especially in urban environments. We argue that these
+problems must be solved in the near-term in order to allow unlicensed-band,
+long-range networking to be successful.
+
+\textbf{Bluetooth Low Energy} (BLE) is a common communication protocol in smartphones,
+laptops, and other consumer products, including many Internet of Things
+devices. BLE communication reduces or eliminates listening costs for energy
+constrained devices, avoids interference via channel diversity, and allows
+intercommunication between sensors and people through personal devices. My
+explorations of BLE capabilities has focused on BLE advertisements—simple,
+periodic, broadcast messages intended for device discovery. Using
+advertisements, a single-hop, star-topology network can be created in full
+compliance with the BLE specification that allows any number of devices to send
+data to any number of gateways[cite??].
+
+My research began by composing models that describe reception rates for BLE
+advertisements. Advertisements are sent without any coordination or
+channel-sense mechanism, essentially an ALOHA[cite] access control mechanism,
+which leads to packet collisions as a primary mechanism of data loss.
+Developing analytical models for these packet collisions allows an upper bound
+of reception rate for a deployed network to be determined in advance based on
+the number of deployed devices and their transmission rate. These models allow
+us to recognize issues with network deployments that are due to external
+factors rather than packet collisions alone. I studied a deployment of BLE
+power meters[cite] that significantly underperformed expectations, finding that
+problems with the gateway BLE hardware were at fault.
+
+\textbf{Future directions.} The biggest potential for disruption in today's low-power
+wireless space is the emergence of new cellular protocols targeted at
+machine-to-machine communication. LTE-M and NB-IoT arose from lengthy
+development by 3GPP and are finally supported by network operators in the US
+and world-wide. Particularly these networks could come to dominate the nascent
+LPWAN space, but they have applications to the indoor space as well. The ideal
+of infrastructure-free deployments is highly motivating. From a
+resource-constrained systems view, how to successfully use these protocols to
+serve application needs is an open question. While they can be low energy, they
+remain high power, necessitating batching of messages to maintain energy
+budgets. Delay-tolerant network techniques may be helpful in order to maintain
+existing network primitives while dealing with necessary high latency.
+
+\textbf{\textsf{\large Enabling Research through Platform Development.}}\\
+The embedded systems field creates many artifacts. In my own career I've
+created sensors, simulations, protocols, and libraries that are capable of
+accomplishing many tasks. I've always been particularly motivated by the
+creation of tools that enable exploration in new domains that were previously
+unapproachable.
+
+\textbf{Signpost} aims to reduce the development burden for city-scale sensing
+projects[cite] [FIGURE of architecture]. City-scale sensing holds a lot of
+promise and interest, and for good reason: applications such as pedestrian
+route planning based on air quality, noise pollution monitoring, and automatic
+emergency response alerts can all improve the quality of life for a city's
+inhabitants. Developing a new sensing system requires much more than just an
+impactful idea, however. Hardware must be designed to support a new sensor with
+energy, communications, storage, and processing capability. These requirements
+make it particularly challenging to perform short-term, exploratory research
+necessary to test out ideas in the first place.
+
+The Signpost hardware and software platform addresses these challenges by
+providing commonly required resources through a modular interface. Hosted
+modules provide sensors and application processing while Signpost provides
+energy, network connection, storage, time, location, and
+Linux-as-a-coprocessor. In order to enable multiple simultaneous deployments,
+Signpost meters shared resources such as energy and communication bandwidth in
+order to provide fairness. The API for accessing these resources is abstracted
+over a shared I2C bus and has been implemented for several embedded software
+platforms including Tock, mbed, and Arduino.
+
+\textbf{Tock} addresses the need for modern operating systems support on
+resource-constrained, microcontroller-based systems[cite] [Figure of Tock
+kernel and apps]. While microcontrollers are the base compute platform for
+embedded systems and the Internet of Things, OS support for them has critically
+lagged behind. Most modern embedded OSes compile a kernel and single
+application into a single binary that is loaded onto the microcontroller
+without any layered protection mechanisms. Support for multiprogramming is
+nearly unheard of. If you only have 64 kB of RAM for the entire system sharing
+it was not even a consideration.
+
+Tock demonstrates that reliable, safe, and dynamic multiprogramming is indeed
+possible on microcontrollers. Tock enforces a system-call boundary between
+applications and the kernel using new hardware features that allow for
+segment-based memory protection. However, even the kernel itself is composed of
+many device drivers that may not all be trustworthy. We demonstrate the use of
+Rust, a type-safe systems language with memory efficiency and performance close
+to C, to enforce driver isolation[cite].
+
+\textbf{Future Directions.} Platforms research benefits not only other communities who
+can use the research platform as a tool, but also my own community of embedded
+systems researchers by elucidating which areas remain under-developed. While
+resources like memory, processor time, and even network access are commonly
+shared, energy is much less widely considered. Isolation between applications
+on an energy-harvesting platform is possible but requires new policies and
+APIs[cite].
+
+As I have developed platforms, I realized a trend has been occurring towards
+multi-microcontroller designs. Rather than handle complex software interactions
+between tasks such as networking and sensing, embedded platforms have become
+distributed systems, with multiple special-purpose compute modules on a single
+board. While this design is increasingly common, support for it in embedded
+software is entirely nonexistent, with inter-microcontroller communication
+recreated in an ad hoc fashion for each platform. A need has arisen for
+software primitives that support message passing, task migration, and platform
+management in a principled manner[cite]. Open-Source Research. Research,
+especially publicly funded research, should benefit the public. I am committed
+to making my research publicly available. This means not just the papers, but
+the hardware and software designs as well. Whenever possible, my first step in
+starting a new research project is creating a public Github repo for it.
+Platforms research is particularly amenable to this goal, and all hardware and
+software designs for both Signpost and Tock are publicly available.
+
+\textbf{\textsf{\large Mentoring Undergraduate Research.}}\\
+Working with undergraduate researchers has always been a significant part of my
+research goals. My own experiences as an undergraduate researcher taught me
+both engineering and communications skills that serve me to this day, and I
+want to provide other students with that opportunity. In my mind, mentorship is
+part of the goal of academic research. At Michigan, I advised nine
+undergraduates and two high school students working on various projects. Five
+were included as authors on lab publications (mostly demo and workshop papers,
+but also two conference papers) and four have gone on to pursue PhDs in
+computer science, including two women. I see my role as a mentor to encourage
+these students to explore new domains and build deeper expertise. The most
+important thing is for them to have a clear goal for what skills they're hoping
+to learn in their research, then we determine how we can fit those goals to
+active research projects. Of particular interest to me moving forward is
+supporting undergraduate teams in research and engineering efforts.
+
+\hl{References}
+
 
 \end{document}
 

@@ -1,4 +1,4 @@
-\documentclass{article} % Default font size is 12 pt, it can be changed here
+\documentclass[12pt]{article} % Default font size is 10 pt, it can be changed here
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 
 \usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
@@ -37,7 +37,7 @@
 \usepackage{rotating}     % Rotates any object, note sideways != sidewaysfigure
 %\usepackage[all=normal]{savetrees} % For when space is tight, read manual and
                           % selectively enable things. CAN BREAK CONF STYLES!!
-\usepackage{siunitx}      % SI units and significant figures
+%\usepackage{siunitx}      % SI units and significant figures
 \usepackage{soul}         % Provides \hl{} for highlighting
 \usepackage[subrefformat=parens]{subcaption}   % Replaces both subfig and subfigure
 \usepackage{tabularx}     % Complicated table creation
@@ -50,6 +50,9 @@
 \usepackage{xspace}
 \usepackage{xfrac}
 
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
 % https://tex.stackexchange.com/questions/74170/have-new-line-between-paragraphs-no-indentation
 \usepackage[parfill]{parskip}
 
@@ -60,6 +63,18 @@
 \usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
 \hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+% Stylize footnotes
+\makeatletter
+% Default:
+% \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\renewcommand{\@makefnmark}{\makebox{\normalfont[\textcolor{red}{\@thefnmark}]}}
+\renewcommand\@makefntext[1]{%
+  \parindent 1em\noindent
+            \hb@xt@1.8em{%
+              \hss\normalfont\textcolor{red}{\@thefnmark}}~#1}
+\makeatother
+
 
 \graphicspath{{./img/}} % Specifies the directory where pictures are stored
 
@@ -100,14 +115,181 @@
 % No number first page
 \thispagestyle{empty}
 
-\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
-  \large \textbf{\textsf{ Teaching Statement }} &
-  \large \textbf{\textsf{ \href{https://patpannuto.com}{Pat Pannuto} }} &
-  \large \textbf{\textsf{ \href{mailto:ppannuto@berkeley.edu}{ppannuto@berkeley.edu} }} \\
-  \toprule
-\end{tabular*}
+\begin{center}
+  \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
+    \large \textbf{\textsf{ Teaching Statement }} &
+    \large \textbf{\textsf{ Branden Ghena }} &
+    \large \textbf{\textsf{ brghena@berkeley.edu }} \\
+    \toprule
+  \end{tabular*}
+\end{center}
 
-TEST
+I've been lucky to be able to experience many different aspects of what it
+means to be a teacher. I've been an instructor of record for a 200 student
+course, taught small discussion sections, managed lab sections, and been a
+mentor for individual undergraduate researchers. I redesigned the lab
+curriculum for the embedded systems class at UC Berkeley, creating a new
+hardware platform and supporting software tools to improve student learning.
+
+What I discovered through my experiences is that I love teaching. Time spent
+helping students at office hours leaves me energized. When preparing material
+for an upcoming class, I'm excited for the new ideas students are about to
+discover. To me, nothing is better than the question from a student that takes
+the ideas you've been discussing and extends them in a way you've never
+considered before. Teaching is a core part of who I am, and I never want to
+stop.
+
+\textbf{\textsf{\large Promoting Hands-On Learning.}}\\
+As both a student and an instructor, my experience has been that hands-on
+learning is critical to forming a deep understanding of a concept. In the
+classroom, I use projects to allow students to engage with new material while
+also exercising secondary skills like debugging. I've found that good projects
+give students the freedom to design and implement their own solution to a
+problem. Whenever possible, I prefer to leave the problem up to the students as
+well. My role as the instructor is then to advise how the lessons of the class
+can be combined with students' desired goals and to use my experience to guide
+them away from possible pitfalls. The embedded systems class at UC Berkeley
+ends with a two-month, open-ended project where students, with the guidance of
+the TAs, can work on whatever topic they desire as long as it can be related
+back to course topics. Allowing choice and ownership of the project increases
+student motivation\footnotemark and enables them to connect to passions outside
+of the computer science world. In past semesters students have integrated ideas
+from industrial engineering, civil engineering, and music theory in their
+semester projects.
+
+\footnotetext{Blumenfeld, Soloway, Marx, Krajcik, Guzdial, and Palincsar.
+``Motivating Project-Based Learning: Sustaining the Doing, Supporting the Learning.''
+Educational Psychologist. 1991.}
+
+Learning occurs outside of the classroom as well, and my background in embedded
+systems leaves me well-situated to encourage it. The ability to connect
+computation and the real world together is valuable to students in a wide
+variety of fields, far more than will realistically enroll in any embedded
+systems course. I see bridging this gap as part of my role as an instructor. At
+Michigan, I held open office hours for cyber-physical systems topics that were
+not connected to any class, but were instead open to the entire university.
+They were frequently attended by student groups and senior-design teams
+throughout engineering disciplines as well as more occasionally by researchers
+in the social sciences. Based on their goals, I provided advice on how to
+design a system and pointed them to existing hardware and software tools that
+could help in their task. By providing a public resource that could fill in
+missing expertise for student groups, open office hours encourage more hands-on
+projects that combine computing and the real-world. I intend to continue this
+idea and explore how it could be extended to other domains of computer science
+and engineering.
+
+\textbf{\textsf{\large Creating an Inclusive Environment.}}\\
+Everyone is welcome in my classroom. All of engineering benefits from diverse
+voices and I want to encourage them whenever possible. One part of doing so is
+to have a diverse course staff. My goal is that all students have multiple role
+models to encourage them that engineering is something they too can be part of.
+Recent research has suggested that some techniques used in the hiring process
+can help to create a gender-balanced staff of TAs, even when drawing from an
+unbalanced student population\footnotemark. They demonstrate that focusing
+hiring decisions on teaching examples and interviews resulted in a more even
+balance of genders than basing decisions on GPA or course grades.
+
+\footnotetext{Kamil, Juett, and DeOrio.
+``Gender-balanced TAs from an Unbalanced Student Body.''
+SIGCSE'19. 2019.}
+
+I also make sure that there are multiple methods by which students can make
+their voices heard. Discussion in class is great, but many students are
+unwilling to speak up or possibly be wrong in front of their peers, especially
+if they feel like they may not belong. I encourage students to feel free to
+talk with me after class, post on a class forum, or bring questions to office
+hours if they want a private discussion. I also try to watch out for students
+whose voices are being unintentionally overtaken by other more confident
+students so that I can pause the discussion and give them a chance to be heard.
+
+\textbf{\textsf{\large Encouraging Self-Reliance.}}\\
+As a teacher, I want to encourage my students to have the skills and confidence
+to independently solve the problems they encounter. This was a particular goal
+when I redesigned the labs for the embedded systems course at UC Berkeley.
+While the existing lab curriculum successfully taught many important concepts,
+students often relied heavily on TA support and weren't building confidence in
+their own abilities.
+
+I realized that a key issue was that students did not feel in control of their
+own success due to overly complicated and unreliable tools, particularly the
+development environment used to build, upload, and debug embedded software. To
+support a diverse range of hardware, the environment included many
+configuration options, the majority of which were not relevant to our labs and
+would cause errors. Tracking these down to a specific source was difficult, and
+students ended up relying heavily on TA support as they didn't understand the
+steps to the build process that the environment was running. The problems
+weren't bad enough to prevent students from completing lab assignments, but
+they led to a feeling of helplessness which defeated the lab's purpose.
+
+The solution, I realized, was to return a sense of control to the students by
+reducing the tools into simple, understandable steps. While past generations of
+TAs had focused on removing errors and documenting complexity, I instead
+replaced the single development environment with smaller tools that were
+manually invoked by the students to handle building, uploading, and debugging
+code. The total number of errors students faced during the course of a lab was
+probably not reduced by the changes, but the impact was very different. Now
+that nothing attempted to handle the entire process opaquely, errors were
+easier to attribute to a single step and then resolve, and because the students
+were manually running each tool, they felt that they had agency over the
+outcome and would attempt to fix problems themselves.
+
+\textbf{\textsf{\large Modeling Thought Processes.}}\\
+Becoming an engineer isn't just about learning facts, but also about a
+different process of thinking that I want to teach to my students. Questions in
+class that I don't know the answer to are a wonderful opportunity to
+demonstrate that engineering thought process. First, I acknowledge that I'm
+unsure what the true answer is. I want students to understand that everyone has
+gaps in their knowledge and that facing uncertainty is a normal occurrence.
+Next, I verbally walk through my thought process on what the answer could be
+and why. Details like simplifying assumptions I'm making and additional
+knowledge I'm applying to the problem serve as examples to students for how
+they can reason through future engineering questions they will face.
+
+When teaching programming, live coding is useful in demonstrating the process
+to students\footnotemark. I've been programming for fifteen years, but I still
+consult the internet to remember API details, and I often write python code
+with an interpreter running in another terminal so I can test out small code
+snippets as I go. None of this is surprising to someone who has experience
+coding, but these parts of the process rarely make it onto lecture slides. Live
+demonstrations give students insight into the types of little questions that
+programmers ask themselves as a part of their process and the techniques we use
+to answer them.
+
+\footnotetext{Marc J.\ Rubin.
+"The Effectiveness of Live-Coding to Teach Introductory Programming."
+SIGCSE'13. 2013.}
+
+When I teach a class, I want to explain not just the subject to my students,
+but also why it is important. I find this to be especially important for
+cross-disciplinary topics. Most of my teaching experiences have been in courses
+that connect hardware and software together, and I've found that
+software-minded students are often unsure of why they should bother learning
+hardware details. Addressing that question directly in class can help to place
+new material in the proper context and motivate student interest in the
+subject. One of the topics I taught as an instructor for the computer
+organization class at UC Berkeley was digital logic. I began the lecture with
+an introduction on why this material was important, noting the lessons hardware
+teaches us about higher-layer software's reliability, performance, and
+security.
+
+\textbf{\textsf{\large Teaching Interests.}}\\
+My experiences in embedded systems have resulted in a wide set of skills and
+knowledge that span software and hardware systems, and I am comfortable
+teaching a variety of computer science and engineering courses. I am interested
+in teaching any courses in the domain of computer science and engineering,
+especially:
+
+\begin{itemize}
+  \item Introductory CS courses: Introduction to Programming and Data Structures
+  \item Introductory EE/CE courses: Introduction to Engineering and Digital Logic
+  \item Mid-Level Systems courses: Computer Organization and Systems Programming
+  \item Upper-Level Systems courses: Embedded Systems, Operating Systems, and Computer Architecture
+\end{itemize}
+
+I am particularly interested in teaching or developing a project-based embedded
+systems course that encourages students to explore connections between
+computing and the real-world.
+
 
 \end{document}
 

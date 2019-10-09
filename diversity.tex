@@ -1,4 +1,4 @@
-\documentclass{article} % Default font size is 12 pt, it can be changed here
+\documentclass[12pt]{article} % Default font size is 10 pt, it can be changed here
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 
 \usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
@@ -37,7 +37,7 @@
 \usepackage{rotating}     % Rotates any object, note sideways != sidewaysfigure
 %\usepackage[all=normal]{savetrees} % For when space is tight, read manual and
                           % selectively enable things. CAN BREAK CONF STYLES!!
-\usepackage{siunitx}      % SI units and significant figures
+%\usepackage{siunitx}      % SI units and significant figures
 \usepackage{soul}         % Provides \hl{} for highlighting
 \usepackage[subrefformat=parens]{subcaption}   % Replaces both subfig and subfigure
 \usepackage{tabularx}     % Complicated table creation
@@ -50,6 +50,9 @@
 \usepackage{xspace}
 \usepackage{xfrac}
 
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
 % https://tex.stackexchange.com/questions/74170/have-new-line-between-paragraphs-no-indentation
 \usepackage[parfill]{parskip}
 
@@ -60,6 +63,18 @@
 \usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
 \hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+% Stylize footnotes
+\makeatletter
+% Default:
+% \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\renewcommand{\@makefnmark}{\makebox{\normalfont[\textcolor{red}{\@thefnmark}]}}
+\renewcommand\@makefntext[1]{%
+  \parindent 1em\noindent
+            \hb@xt@1.8em{%
+              \hss\normalfont\textcolor{red}{\@thefnmark}}~#1}
+\makeatother
+
 
 \graphicspath{{./img/}} % Specifies the directory where pictures are stored
 
@@ -100,14 +115,76 @@
 % No number first page
 \thispagestyle{empty}
 
-\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
-  \large \textbf{\textsf{ Teaching Statement }} &
-  \large \textbf{\textsf{ \href{https://patpannuto.com}{Pat Pannuto} }} &
-  \large \textbf{\textsf{ \href{mailto:ppannuto@berkeley.edu}{ppannuto@berkeley.edu} }} \\
-  \toprule
-\end{tabular*}
+\begin{center}
+  \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
+    \large \textbf{\textsf{ Diversity Statement }} &
+    \large \textbf{\textsf{ Branden Ghena }} &
+    \large \textbf{\textsf{ brghena@berkeley.edu }} \\
+    \toprule
+  \end{tabular*}
+\end{center}
 
-TEST
+I hope to be seen as an ally, as someone students can go to for help and trust
+to understand their problems. This isn't a simple thing to do. Based on my own
+background, I come bundled with assumptions about what it's like to be a
+student and what you need to do to succeed. I believe that I may never
+completely understand the challenges some students face. To overcome this, I
+need to listen and learn from my students and my colleagues. There are also
+actions that I can take in my teaching to support students and create an
+inclusive environment.
+
+\textbf{\textsf{\large Giving Students Equal Chances to Succeed.}}\\
+One of my concerns as a teacher are the implicit biases I bring with me,
+particularly in grading where points need to be awarded fairly. Having clear
+course policies to start with helps ensure that I am treating all students
+equally. Keeping assignments anonymous while grading helps me to ensure that
+I'm applying rubrics in the same manner to all students. I've found modern
+tools to be very useful for this, and I use Gradescope in all of my classes to
+avoid knowledge of which student's work I'm grading.
+
+Inequity can also occur in the prior knowledge students bring with them to
+class. Understanding command line tools, version control systems, and build
+processes is necessary for success in many CS courses, but students are
+frequently assumed to already know these skills or else are expected to learn
+them as they work, disadvantaging students without prior experience in CS. I'm
+particularly inspired by institutional efforts to address these issues. The
+Computer Science Pragmatics[cite] course at Michigan teaches tools from package
+managers to autocomplete as a one-credit course. By making tools for CS a part
+of the curriculum, students in higher-level classes are able to equally focus
+on the new course materials rather than ancillary skills.
+
+\textbf{\textsf{\large Supporting Diversity.}}\\
+Course staff don't just serve as teachers, but also as role models for students
+as they become part of the CS community. I want students to be able to identify
+with instructors, which in turn means having a diverse course staff. Recent
+research has suggested that some techniques used in the hiring process can help
+to create a gender-balanced staff of TAs, even when drawing from an unbalanced
+student population\footnotemark. They demonstrate that focusing hiring decisions on teaching
+examples and interviews resulted in a more even balance of genders than basing
+decisions on GPA or course grades.
+
+\footnotetext{Kamil, Juett, and DeOrio.
+``Gender-balanced TAs from an Unbalanced Student Body.''
+SIGCSE'19. 2019.}
+
+Encouraging students, especially students from diverse backgrounds, to get
+involved in extracurricular CS activities benefits everyone. As a grad student,
+I mentored several students who had formerly been in classes I taught. Four of
+these students are now working on PhDs in CS, including two women. Providing
+opportunities to get more deeply involved in research or teaching can help
+students to gain a sense of belonging in the field.
+
+\textbf{\textsf{\large Future Efforts.}}\\
+As a teacher and a voice in the department, it will be more important than ever
+to be an ally. I intend to bring the lessons I have learned to my future
+classes, providing diverse role models for my students and supporting equal
+opportunities for learning. However, the techniques and ideas that have
+resonated with me are only a part of what need to be broad efforts to support
+diversity, equity, and inclusion in CS and engineering. I look forward to
+listening and learning from my colleagues and my students to better understand
+the challenges they are facing and to make sure that all students feel welcome
+in the CS community.
+
 
 \end{document}
 
