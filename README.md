@@ -1,6 +1,7 @@
 # appkit-statements
 Statements for academic applications. Includes Teaching Statement, Research
-Statement, and Diversity, Equity, and Inclusion Statement.
+Statement, Diversity, Equity, & Inclusion Statement, and Summary of Teaching
+Evaluations.
 
 ### Layout
 
