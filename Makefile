@@ -2,18 +2,17 @@ LATEXRUN ?= ./latexrun
 
 all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf
 
-.PHONY: FORCE
-brghena-teaching.pdf: FORCE
-	$(LATEXRUN) --latex-args="-shell-escape" -Wall teaching.tex -o $@
+brghena-teaching.pdf: tex/teaching.tex
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
-brghena-research.pdf: FORCE
-	$(LATEXRUN) --latex-args="-shell-escape" -Wall research.tex -o $@
+brghena-research.pdf: tex/research.tex tex/references.bib
+	$(LATEXRUN) --latex-args="-shell-escape" --bibtex-cmd="biber" -Wall $< -o pdfs/$@
 
-brghena-diversity.pdf: FORCE
-	$(LATEXRUN) --latex-args="-shell-escape" -Wall diversity.tex -o $@
+brghena-diversity.pdf: tex/diversity.tex
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
-brghena-evaluations.pdf: FORCE
-	$(LATEXRUN) --latex-args="-shell-escape" -Wall evaluations.tex -o $@
+brghena-evaluations.pdf: tex/evaluations.tex
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
 .PHONY: clean
 clean:

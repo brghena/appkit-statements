@@ -1,0 +1,470 @@
+
+
+@inproceedings{debruin15powerblade,
+    author = {DeBruin, Samuel and \textbf{Ghena}, \textbf{Branden} and Kuo, Ye-Sheng and Dutta, Prabal},
+    title = {{PowerBlade: A Low-Profile, True-Power, Plug-Through Energy Meter}},
+    booktitle = {Proceedings of the 13th ACM Conference on Embedded Networked Sensor Systems},
+    series = {SenSys'15},
+    year = {2015},
+    mon = {Nov},
+    isbn = {987-1-4503-3631-4},
+    doi = {10.1145/2809695.2809716},
+    url = {http://doi.acm.org/10.1145/2809695.2809716},
+    location = {Seoul, Republic of Korea},
+    publisher = {ACM},
+    conference-url = {http://sensys.acm.org/2015/},
+    abstract = { We present PowerBlade, the smallest, lowest cost, and lowest power
+        AC plug-load meter that measures real, reactive and apparent power, and
+        reports this data, along with cumulative energy consumption, over an
+        industry-standard Bluetooth Low Energy radio.  Achieving this design
+        point requires revisiting every aspect of conventional power meters: a
+        new method of acquiring voltage; a non-invasive, planar method of
+        current measurement; an efficient and accurate method of computing
+        power from the voltage and current channels; a radio interface that
+        leverages nearby smart phones to display data and report it to the
+        cloud; and a retro power supply re-imagined with vastly lower current
+        draw, allowing extreme miniaturization.  PowerBlade occupies a mere 1"
+        $\times$ 1" footprint, offers a 1/16" profile, draws less
+        than 180~mW itself, offers 1.13\% error on unity power factor loads in
+        the 2-1200~W range and slightly worse for non-linear and reactive
+        loads, and costs \$11 in modest quantities of about 1,000 units.  This
+        new design point enables affordable large-scale studies of plug-load
+        energy usage---an area of growing national importance.
+    },
+    acceptance-accepted=27,
+    acceptance-total=132,
+    %note = {Acceptance Rate: 27 of 132},
+}
+
+@inproceedings{levy15ownership,
+    author = {Levy, Amit and Andersen, Michael P and Campbell, Bradford and Culler, David and Dutta, Prabal and \textbf{Ghena}, \textbf{Branden} and Levis, Philip and Pannuto, Pat},
+    title = {{Ownership is Theft: Experiences Building an Embedded OS in Rust}},
+    booktitle = {Proceedings of the 8th Workshop on Programming Languages and Operating Systems},
+    series = {PLOS 2015},
+    year = {2015},
+    month = {Oct},
+    location = {Monterey, CA},
+    publisher = {ACM},
+    abstract = { Rust, a new systems programming language, provides
+        compile-time memory safety checks to help eliminate runtime bugs that
+        manifest from improper memory management. This feature is advantageous
+        for operating system development, and especially for embedded OS
+        development, where recovery and debugging are particularly challenging.
+        However, embedded platforms are highly event-based, and Rust's memory
+        safety mechanisms largely presume threads. In our experience developing
+        an operating system for embedded systems in Rust, we have found that
+        Rust's {\em ownership} model prevents otherwise safe resource sharing
+        common in the embedded domain, conflicts with the reality of hardware
+        resources, and hinders using closures for programming asynchronously.
+        We describe these experiences and how they relate to memory safety as
+        well as illustrate our workarounds that preserve the safety guarantees
+        to the largest extent possible. In addition, we draw from our
+        experience to propose a new language extension to Rust that would
+        enable it to provide better memory safety tools for event-driven
+        platforms.
+    },
+    acceptance-accepted=7,
+    acceptance-total=16,
+    %note = {Acceptance Rate: 7 of 16},
+}
+
+@inproceedings{campbell14thermes,
+    author = {Campbell, Brad and \textbf{Ghena}, \textbf{Branden} and Dutta, Prabal},
+    title = {{Energy-Harvesting Thermoelectric Sensing for Unobtrusive Water and Appliance Metering}},
+    booktitle = {Proceedings of the 2nd International Workshop on Energy Neutral Sensing Systems},
+    series = {ENSsys '14},
+    year = {2014},
+    month = Nov,
+    location = {Memphis, TN},
+    publisher = {ACM},
+    abstract = {Fine-grained energy metering in homes and buildings provides a promising
+    technique for addressing the unmaintainable energy consumption levels of
+    worldwide buildings. Metering electricity, lighting, natural gas, HVAC,
+    occupancy, and water on a per appliance or room basis can provide invaluable insight
+    when trying to reduce a building's energy footprint. A myriad of sensor designs
+    and systems collect data on particular building aspects, but are often hampered
+    by installation difficulty or ongoing maintenance needs (like battery
+    replacement). We address these common pitfalls for water and heat metering by
+    developing a small, energy-harvesting sensor that meters using the same
+    thermoelectric generator with which it powers itself. In short, the rate at which
+    the harvester captures energy is proportional to the heat production of the
+    monitored appliance or pipe and this relationship allows us to estimate energy use
+    simply based on the sensor's ability to harvest. We prototype our sensor in a
+    bracelet shaped form-factor that can attach to a shower head pipe, faucet, or
+    appliance to provide local hot water or heat metering.},
+    acceptance-accepted=9,
+    acceptance-total=11,
+    %note = {Acceptance Rate: 9 of 11},
+}
+
+
+@inproceedings {ghena14green_lights,
+    author = {\textbf{Branden Ghena} and William Beyer and Allen Hillaker and Jonathan Pevarnek and J. Alex Halderman},
+    title = {{Green Lights Forever: Analyzing the Security of Traffic Infrastructure}},
+    booktitle = {8th USENIX Workshop on Offensive Technologies},
+    series = {WOOT '14},
+    year = {2014},
+    month = Aug,
+    location = {San Diego, CA},
+    publisher = {USENIX Association},
+    abstract = {The safety critical nature of traffic infrastructure requires that it
+    be secure against computer-based attacks, but this is not always the case.
+    We investigate a networked traffic signal system currently deployed in the
+    United States and discover a number of security flaws that exist due to
+    systemic failures by the designers. We leverage these flaws to create attacks
+    which gain control of the system, and we successfully demonstrate them on the
+    deployment in coordination with authorities. Our attacks show that an
+    adversary can control traffic infrastructure to cause disruption, degrade
+    safety, or gain an unfair advantage. We make recommendations on how to improve
+    existing systems and discuss the lessons learned for embedded systems security
+    in general.},
+    acceptance-accepted=17,
+    acceptance-total=35,
+    %note = {Acceptance Rate: 17 of 35},
+}
+
+@article{campbell16perpetual,
+    keywords={journal},
+    author={Campbell, Bradford and Clark, Meghan and DeBruin, Samuel and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Kuo, Ye-Sheng and Dutta, Prabal},
+    title = {{Perpetual Sensing for the Built Environment}},
+    journal={IEEE Pervasive Computing},
+    volume={15},
+    number={4},
+    year={2016},
+    publisher={IEEE},
+    url={http://dx.doi.org/10.1109/MPRV.2016.66},
+    conference-url={\url{https://www.computer.org/pervasive-computing/}},
+    doi={10.1109/MPRV.2016.66},
+    abstract={An energy harvesting sensor system architecture emerges through
+        multiple generations of sensor development and deployment for smart
+        building applications. Energy-harvesting sensors for monitoring
+        plug-loads and circuit panels, light fixtures, air flow, hot water
+        flow, and door openings are presented. This article is part of a
+        special issue on energy harvesting.
+    },
+}
+
+@inproceedings{levy17rustkernel,
+	address = {New York, NY, USA},
+	conference-url = {https://www.cse.iitb.ac.in/~apsys2017/},
+	articleno = {1},
+	doi = {10.1145/3124680.3124717},
+	author = {Levy, Amit and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Pannuto, Pat and Dutta, Prabal and Levis, Philip},
+	location = {Mumbai, India},
+	booktitle = {Proceedings of the 8th Asia-Pacific Workshop on Systems},
+	publisher = {ACM},
+	year = {2017},
+	url = {http://doi.acm.org/10.1145/3124680.3124717},
+	acmid = {3124717},
+	isbn = {978-1-4503-5197-3},
+	series = {APSys'17},
+	month = {September},
+	title = {{The Case for Writing a Kernel in Rust}},
+}
+
+@inproceedings{levy17multiprogramming,
+	address = {New York, NY, USA},
+	conference-url = {https://www.sigops.org/sosp/sosp17/},
+	booktitle = {Proceedings of the 26th Symposium on Operating Systems Principles},
+	doi = {10.1145/3132747.3132786},
+	author = {Levy, Amit and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Giffin, Daniel B. and Pannuto, Pat and Dutta, Prabal and Levis, Philip},
+	location = {Shanghai, China},
+	publisher = {ACM},
+	year = {2017},
+	url = {http://doi.acm.org/10.1145/3132747.3132786},
+	acmid = {3132786},
+	isbn = {978-1-4503-5085-3},
+	series = {SOSP'17},
+	month = {Oct},
+	title = {{Multiprogramming a 64kB Computer Safely and Efficiently}},
+        acceptance-percent=17,
+	%note = {Acceptance Rate: 17\%},
+}
+
+@inproceedings{adkins18signpost,
+    publisher = {ACM},
+    conference-url = {http://ipsn.acm.org/2018/},
+    booktitle = {Proceedings of the 17th ACM/IEEE International Conference on Information Processing in Sensor Networks},
+    author = {Adkins, Joshua and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Pannuto, Pat and Rohrer, Samuel and Campbell, Bradford and Dutta, Prabal},
+    title = {{The Signpost Platform for City-Scale Sensing}},
+    address = {New York, NY, USA},
+    series = {IPSN'18},
+    month = {April},
+    year = {2018},
+    acceptance-accepted=22,
+    acceptance-total=83,
+    %note = {Acceptance Rate: 22 of 83},
+}
+
+@inproceedings{adkins19freeloader,
+    publisher = {ACM},
+    conference-url = {http://www.hotmobile.org/2019},
+    booktitle = {Proceedings of the 20th International Workshop on Mobile Computing Systems and Applications},
+    author = {Adkins, Joshua and \textbf{Ghena}, \textbf{Branden} and Dutta, Prabal},
+    title = {{Freeloader's Guide Through the Google Galaxy}},
+    address = {New York, NY, USA},
+    series = {HotMobile'19},
+    month = {February},
+    year = {2019},
+    acceptance-accepted=26,
+    acceptance-total=57,
+    %note = {Acceptance Rate: 26 of 57},
+}
+
+@inproceedings{adkins18signpost-getmobile,
+    publisher = {ACM},
+    conference-url = {https://www.sigmobile.org/pubs/getmobile/},
+    booktitle = {GetMobile: Mobile Computing and Communications},
+    author = {Adkins, Joshua and \textbf{Ghena}, \textbf{Branden} and Dutta, Prabal},
+    title = {{Signpost: Enabling City-Scale Sensing for Citizens and Scientists}},
+    address = {New York, NY, USA},
+    series = {GetMobile},
+    volume = {22},
+    issue = {3},
+    month = {September},
+    year = {2018}
+}
+
+@inproceedings{adkins17energy,
+ author = {Adkins, Joshua and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Pannuto, Pat and Dutta, Prabal},
+ title = {{Energy Isolation Required for Multi-tenant Energy Harvesting Platforms}},
+ booktitle = {Proceedings of the Fifth ACM International Workshop on Energy Harvesting and Energy-Neutral Sensing Systems},
+ series = {ENSsys'17},
+ year = {2017},
+ month = {November},
+ isbn = {978-1-4503-5477-6},
+ location = {Delft, Netherlands},
+ url = {http://doi.acm.org/10.1145/3142992.3142995},
+ doi = {10.1145/3142992.3142995},
+ acmid = {3142995},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {Energy Harvesting, Energy Isolation, Multi-tenancy},
+ conference-url = {\url{http://www.enssys.org/2017/}},
+ abstract = {
+   Embedded systems have long been synonymous with special purpose, single
+   stakeholder computing. However, as these systems have become more capable and
+   the demands placed on them have become more varied and variable, embedded
+   software is beginning to embrace multi-tenancy.
+   While the general problem of supporting multiple users and processes on a
+   computing platform has been well explored in computer science, the
+   challenges of supporting multiple users with competing desires on a highly
+   energy-variable system remain unexplored.
+   On an energy-harvesting platform, incoming energy needs to be distributed
+   between stakeholders, and users accessing shared platform resources should
+   be charged for the energy use of those resources.
+   Furthermore, with system designers and application creators being
+   increasingly removed from each other, the software environments of
+   energy-harvesting platforms must provide primitives that enable applications
+   to adapt to system variability.
+   We explore several initial techniques for solving these problems and
+   demonstrate them using Signpost---a modular, energy-harvesting platform for
+   city-scale sensing.
+ },
+    acceptance-accepted=6,
+    acceptance-total=18,
+ %note = {Acceptance Rate: 6 of 18},
+}
+
+@inproceedings{campbell16gateway-demo,
+    author = {Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Kuo, Ye-Sheng and Dutta, Prabal},
+    title = {{Demo Abstract: Swarm Gateway}},
+    booktitle = {Proceedings of the 3rd ACM International Conference on Systems for Energy-Efficient Built Environments},
+    series = {BuildSys'16},
+    year = {2016},
+    month = {November},
+    isbn = {978-1-4503-4264-3/16/11},
+    doi = {10.1145/2993422.2996407},
+    url = {http://dx.doi.org/10.1145/2993422.2996407},
+    location = {Palo Alto, CA, USA},
+    conference-url = {http://buildsys.acm.org/2016/},
+    abstract = {The gateway is a key component for sensor network deployments
+        and the Internet of Things. Sensor deployments often tend towards
+        low-power communication protocols such as Bluetooth Low Energy or IEEE
+        802.15.4. Gateways are essential to connect these devices to the
+        Internet at large. Over time though, gateways have gained additional
+        responsibilities as well. Sensors expect gateways to handle
+        device-specific data translation and local processing while also
+        providing services, such as time synchronization, to the low-power
+        device. As a centralized computing resource, the gateway is also an
+        obvious location for running local applications which interact with
+        sensor data and control nearby actuators. Today, vendors and
+        researchers often create their own device-specific gateways to handle
+        these responsibilities.
+
+        We propose a generic gateway platform capable of supporting the needs
+        of many devices. In our architecture, devices provide a pointer, such
+        as a URL, to descriptions of their interfaces. The gateway can download
+        the interface descriptions and use them to determine how to interact
+        with the device, translating its data to a usable format and enabling
+        local services to communicate with it. The translated data is provided
+        to services including user applications, local logging, device status
+        monitoring, and cloud applications. By simultaneously supporting
+        communication with many sensors, our gateway architecture can simplify
+        future sensor network deployments and enable intelligent building
+        applications.
+    },
+}
+
+@inproceedings{adkins16signpost-demo,
+    author = {Adkins, Joshua and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Pannuto, Pat and Dutta, Prabal},
+    title = {{Demo Abstract: The Signpost Network}},
+    booktitle = {Proceedings of the 14th ACM Conference on Embedded Networked Sensor Systems},
+    series = {SenSys'16},
+    year = {2016},
+    month = {November},
+    isbn = {978-1-4503-4263-6/16/11},
+    doi = {10.1145/2994551.2996542},
+    url = {http://dx.doi.org/10.1145/2994551.2996542},
+    location = {Stanford, CA, USA},
+    conference-url = {http://sensys.acm.org/2016/},
+    abstract = { The era of city-scale sensing is dawning. Supported by new
+        sensing capabilities, the capability to detect and measure phenomena
+        throughout a large area will allow deeper insight and understanding
+        into how cities work. The challenge of city-scale sensing is not
+        limited to developing new sensing applications, however. A sensor must
+        be installed in a location. It must be provided power, storage, and
+        communications. All these tasks stand aside from the desired sensing
+        effort, but are necessary nevertheless.
+
+        In this demo, we introduce an initial prototype for a modular,
+        city-scale sensing platform---the signpost network. The platform,
+        designed to be physically attached to sign posts throughout a city,
+        reduces the burden for sensor and application developers by providing
+        the necessary resources to modules attached to it. Power is provided by
+        harvesting from solar panels with battery storage, with each module
+        allocated a certain subset of the system energy. The signpost platform
+        also provides data storage, long-range communication, data processing,
+        module isolation, and an installation point for connected modules. The
+        signpost acts as a modular base station for researchers, citizen
+        scientists, and other interested parties to deploy custom sensors for
+        applications such as pedestrian counting, air quality monitoring, and
+        RF spectrum sensing at a city-wide scale.
+    },
+}
+
+@inproceedings{debruin15powerblade-demo,
+    author = {DeBruin, Samuel and \textbf{Ghena}, \textbf{Branden} and Kuo, Ye-Sheng and Dutta, Prabal},
+    title = {{Demo: PowerBlade A Low-Profile, True-Power, Plug-Through Energy Meter}},
+    booktitle = {Proceedings of the 13th ACM Conference on Embedded Networked Sensor Systems},
+    series = {SenSys'15},
+    year = {2015},
+    mon = {Nov},
+    isbn = {987-1-4503-3631-4},
+    doi = {10.1145/2809695.2817855},
+    url = {http://doi.acm.org/10.1145/2809695.2817855},
+    location = {Seoul, Republic of Korea},
+    publisher = {ACM},
+    conference-url = {http://sensys.acm.org/2015/demos/},
+    abstract = { We present PowerBlade, the smallest and lowest power AC plug-load
+        meter that measures real, reactive and apparent power, and reports this
+        data, along with cumulative energy consumption, over an
+        industry-standard Bluetooth Low Energy radio. Achieving this design
+        point requires revisiting every aspect of conventional power meters: a
+        new method of acquiring voltage; a non-invasive, planar method of
+        current measurement; an efficient and accurate method of computing
+        power from the voltage and current channels; a radio interface that
+        leverages nearby smart phones to display data and report it to the
+        cloud; and a retro power supply reimagined with vastly lower current
+        draw, allowing extreme miniaturization. PowerBlade occupies a mere 1" by 1"
+        footprint, offers a 1/16" profile, draws 52~mW continuously,
+        offers 1.13\% error on unity power factor loads in the 2-1200~W range
+        and slightly worse for non-linear and reactive loads, and costs \$11 in
+        modest quantities of about 1000 units. This new design point enables
+        affordable large-scale studies of plug-load energy usage---an area of
+        growing national importance.
+    },
+}
+
+@inproceedings{adkins17signpost-ts,
+	month = {October},
+	conference-url = {https://www.terraswarm.org/conferences/17/annual/},
+	booktitle = {TerraSwarm 2017 Annual Review},
+	extra = {David Wessel Best Demo Award},
+	author = {Adkins, Joshua and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Pannuto, Pat and Dutta, Prabal},
+	location = {Berkeley, CA, USA},
+	year = {2017},
+	series = {TerraSwarm'17},
+	title = {{The Signpost Platform for City-Scale Sensing}},
+}
+
+@inproceedings{adkins18signpostdemo,
+	publisher = {ACM},
+	conference-url = {http://ipsn.acm.org/2018/},
+	booktitle = {Proceedings of the 17th ACM/IEEE International Conference on Information Processing in Sensor Networks},
+	author = {Adkins, Joshua and Campbell, Bradford and \textbf{Ghena}, \textbf{Branden} and Jackson, Neal and Pannuto, Pat and Rohrer, Samuel and Dutta, Prabal},
+	title = {{Demo Abstract: Applications on the Signpost Platform for City-Scale Sensing}},
+	address = {New York, NY, USA},
+	series = {IPSN'18},
+	month = {April},
+	year = {2018},
+}
+
+@inproceedings{ghena19distributed,
+  author = {\textbf{Ghena}, \textbf{Branden} and Watson, Jean-Luc and Dutta, Prabal},
+  title = {Embedded {OSes} Must Embrace Distributed Computing},
+  booktitle = {Proceedings of the 1st International Workshop on Next-Generation Operating Systems for Cyber-Physical Systems},
+  series = {NGOSCPS'19},
+  year = {2019},
+  month = {April},
+  location = {Montreal, Canada},
+  numpages = {3},
+  conference-url={\url{https://www.cse.wustl.edu/~cdgill/ngoscps2019/}},
+  abstract = {
+    Long the case in automotive, aeronautics, and industrial settings, embedded
+    systems in myriad other areas are becoming distributed systems in all but
+    name. Driven by increasingly complex applications with wide-ranging
+    hardware requirements, developers are turning to modular designs that
+    integrate multiple processors onto a single board. Unfortunately,
+    problems already familiar to distributed systems—coordinated execution,
+    portable applications, and unified system-wide administration—have no
+    corresponding embedded support and must be re-implemented in an ad hoc
+    fashion for each application. We argue that future embedded operating
+    system development should explicitly support these multi-microcontroller
+    systems, and can leverage distributed techniques to do so. We also
+    believe that the low-level nature of embedded sensing indicates that OSes
+    should not attempt to completely abstract the presence of separate
+    hardware components and capabilities. Instead, they should provide useful
+    interfaces that support resource-constrained execution and modular
+    application interactions. To that end, we identify existing embedded OS
+    efforts and distributed systems concepts that can inform next-generation
+    OS development.
+  },
+  acceptance-accepted = 14,
+}
+
+@inproceedings{ghena19lpwans,
+  author = {\textbf{Ghena}, \textbf{Branden} and Adkins, Joshua and Shangguan, Longfei and Jamieson, Kyle and Levis, Phil and Dutta, Prabal},
+  title = {Challenge: Unlicensed LPWANs Are Not Yet the Path to Ubiquitous Connectivity},
+  booktitle = {Proceedings of the 25th Annual International Conference on Mobile Computing and Networking},
+  series = {MobiCom'19},
+  year = {2019},
+  month = {October},
+  location = {Los Cabos, Mexico},
+  numpages = {12},
+  conference-url={\url{https://sigmobile.org/mobicom/2019/}},
+  abstract = {
+    Low-power wide-area networks (LPWANs) are a compelling answer to the
+    networking challenges faced by many Internet of Things devices. Their
+    combination of low power, long range, and deployment ease has motivated a
+    flurry of research, including exciting results on backscatter and
+    interference cancellation that further lower power budgets and increase
+    capacity. But despite the interest, we argue that unlicensed LPWAN
+    technologies can only serve a narrow class of Internet of Things
+    applications due to two principal challenges: capacity and coexistence.
+
+    We propose a metric, bit flux, to describe networks and applications in
+    terms of throughput over a coverage area. Using bit flux, we find that the
+    combination of low bit rate and long range restricts the use case of LPWANs
+    to sparse sensing applications. Furthermore, this lack of capacity leads
+    networks to use as much available bandwidth as possible, and a lack of
+    coexistence mechanisms causes poor performance in the presence of multiple,
+    independently-administered networks. We discuss a variety of techniques and
+    approaches that could be used to address these two challenges and enable
+    LPWANs to achieve the promise of ubiquitous connectivity.
+  },
+    acceptance-accepted=30,
+    acceptance-total=186,
+  %note = {Acceptance Rate: 30 of 186}
+}
+

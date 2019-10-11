@@ -1,6 +1,16 @@
 \documentclass[11pt]{article} % Default font size is 10 pt, it can be changed here
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 
+\usepackage[%
+  backend=biber,
+  %style=numeric,
+  sorting=nyt, % https://tex.stackexchange.com/questions/51434/biblatex-citation-order
+  minnames=15,
+  maxnames=25,
+  defernumbers=true,
+]{biblatex}
+\setlength\bibitemsep{0.60\itemsep}
+
 \usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
 
 \PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}
@@ -60,7 +70,7 @@
 \singlespacing
 
 % Must be last imports
-\usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
+\usepackage[colorlinks=true,citecolor=red,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
 \hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
 
@@ -102,6 +112,88 @@
 \newcommand{\iic}{I$^2$C\xspace}
 \newcommand{\vdd}{V$_{\textnormal{DD}}$\xspace}
 \newcommand{\mm}{m\textsuperscript{2}\xspace}
+
+% Load bibs the biber way
+\addbibresource{references.bib}
+
+% Custom bibtex keys, from
+% http://tex.stackexchange.com/questions/111846/biblatex-2-custom-fields-only-one-is-working
+\DeclareSourcemap{
+  \maps[datatype=bibtex,overwrite=true]{
+    \map{
+      \step[fieldsource=acceptance-total]
+      \step[fieldset=usera,origfieldval]
+    }
+    \map{
+      \step[fieldsource=acceptance-accepted]
+      \step[fieldset=userb,origfieldval]
+    }
+    \map{
+      \step[fieldsource=acceptance-total]
+      \step[fieldset=acceptance-accepted,append=true,fieldvalue=/]
+      \step[fieldset=acceptance-accepted,append=true,origfieldval]
+      \step[fieldsource=acceptance-accepted]
+      \step[fieldset=userc,append=true,origfieldval]
+    }
+    \map{
+      \step[fieldsource=extra]
+      \step[fieldset=userd,origfieldval]
+    }
+    \map{
+      \step[fieldsource=acceptance-percent]
+      \step[fieldset=usere,origfieldval]
+    }
+  }
+}
+
+% Acceptance rates in bib. Print Extra Info.
+\ExplSyntaxOn
+\NewDocumentCommand{\myMathFunction}{m}
+{ \fp_eval:n {round((#1)*100)} }
+\ExplSyntaxOff
+
+\DeclareFieldFormat{userc}{\myMathFunction{#1}\%}
+
+\AtEveryBibitem{%
+  \csappto{blx@bbx@\thefield{entrytype}}{% put at end of entry
+    \iffieldundef{usera}{%
+%    \space \textbf{No annotation!}}{%
+    }{%
+      \\Acceptance:%
+      \space\printfield{userb}~/~\printfield{usera}%
+      \space(\printfield{userc}).
+    }
+    \iffieldundef{usere}{%
+    }{%
+      \\Acceptance:%
+      \space\printfield{usere}\%.
+    }
+    \iffieldundef{userd}{%
+      %
+    }{%
+      \textbf{\\\bf\printfield{userd}.}
+    }
+  }
+}
+
+% https://tex.stackexchange.com/questions/297087/putting-the-title-first-in-the-bibliography
+\newcommand{\nameuse}[1]{%
+  \def\do##1{\settoggle{blx@use##1}{#1}}%
+  \dolistcsloop{blx@datamodel@names}}
+
+\newcommand{\nameusesave}{%
+  \def\do##1{%
+    \providetoggle{blx@save@use##1}%
+    \iftoggle{blx@use##1}{\toggletrue{blx@save@use##1}}{\togglefalse{blx@save@use##1}}%
+  }%
+  \dolistcsloop{blx@datamodel@names}}
+
+\newcommand{\nameuserestore}{%
+  \def\do##1{%
+    \iftoggle{blx@save@use##1}{\toggletrue{blx@use##1}}{\togglefalse{blx@use##1}}%
+  }%
+  \dolistcsloop{blx@datamodel@names}}
+
 
 % Break URLs properly (thanks to Alex Halderman)
 \def\UrlBreaks{\do-\do\.\do\@\do\\\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,\do\?\do\'\do+\do\=\do\#}
@@ -153,7 +245,7 @@ a kilometer while drawing only a few hundred milliwatts enables exciting new
 applications. [FIGURE Range vs Throughput]
 
 However, as we investigated these new networks, we realized that they face
-problems when attempting to serve real-world applications[Mobicom'19]. As we
+problems when attempting to serve real-world applications~\cite{ghena19lpwans}. As we
 began our investigations, we realized a new metric was needed. Neither range
 nor throughput were sufficient metrics for studying LPWANs. We defined bit
 flux, a measure of throughput over coverage area as a way of comparing them.
@@ -293,8 +385,30 @@ to learn in their research, then we determine how we can fit those goals to
 active research projects. Of particular interest to me moving forward is
 supporting undergraduate teams in research and engineering efforts.
 
-\hl{References}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\renewcommand*{\bibfont}{\footnotesize}
+
+% https://tex.stackexchange.com/questions/22645/hiding-the-title-of-the-bibliography
+\begingroup
+\renewcommand{\section}[2]{}%
+
+% title first commands
+\nameusesave
+\nameuse{false}
+
+\medskip
+\textbf{\textsf{\large References}}
+
+%\bibliographystyle{plain}
+%\bibliography{references}
+\printbibliography
+
+\nameuserestore
+
+\endgroup
 
 \end{document}
 
