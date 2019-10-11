@@ -3,6 +3,8 @@ Statements for academic applications. Includes Teaching Statement, Research
 Statement, Diversity, Equity, & Inclusion Statement, and Summary of Teaching
 Evaluations.
 
+The majority of the tex file styling was borrowed gratefully from Pat Pannuto.
+
 ### Layout
 
 The main tex file is located in `tex/paper.tex`, and the references are located
