@@ -12,7 +12,9 @@ brghena-diversity.pdf: tex/diversity.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
 brghena-evaluations.pdf: tex/evaluations.tex
-	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/eval-cover.pdf
+	pdfunite pdfs/eval-cover.pdf evals/combined_evals.pdf pdfs/$@
+	rm pdfs/eval-cover.pdf
 
 .PHONY: clean
 clean:
