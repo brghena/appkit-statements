@@ -1,6 +1,6 @@
 LATEXRUN ?= ./latexrun
 
-all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf
+all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf cover_letters
 
 brghena-teaching.pdf: tex/teaching.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
@@ -15,6 +15,10 @@ brghena-evaluations.pdf: tex/evaluations.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/eval-cover.pdf
 	pdfunite pdfs/eval-cover.pdf evals/combined_evals.pdf pdfs/$@
 	rm pdfs/eval-cover.pdf
+
+.PHONY: force
+cover_letters: force
+	python3 cover_letters/build_script.py
 
 .PHONY: clean
 clean:
