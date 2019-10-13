@@ -1,0 +1,196 @@
+\documentclass[11pt]{article} % Default font size is 10 pt, it can be changed here
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
+
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}
+
+\usepackage{adjustbox}    % Auto-resize table content (eg Opo SenSys'14 rel)
+\usepackage{amsfonts}     % Adds math fonts, commands such as \begin{align}
+\usepackage{amsmath}      % Provides align* environment
+\usepackage{array}        % Tables for use in math mode
+\usepackage{balance}      % For balanced columns on the last page
+\usepackage{booktabs}     % Elegant table-formatting library
+\usepackage{bold-extra}   % Provides bf+sc (only in textbf+textsc env.)
+\usepackage{bytefield}    % Formatting and layout of packets / bytefields
+\usepackage[skip=5pt]{caption}
+\usepackage{changepage}   % Modify margins
+%\usepackage{colortbl}     % Color table cells
+\usepackage{comment}      % Provides \begin,\end{comment} for large blocks
+\usepackage{cprotect}     % Allows verbatim, other formatting in macro args
+\usepackage[ampersand]{easylist} % Simpler list syntax
+\usepackage{endnotes}     % Footnotes pushed to the end of a document
+\usepackage{enumitem}     % Allow customizations of itemize/enumerate env's
+\usepackage{environ}      % Necessary for the placefigure creation
+\usepackage{float}        % Allow use of [H] to force figure placement
+\usepackage{gensymb}      % Adds useful symbols w/out math mode, e.g. \degree
+\usepackage{graphicx}     % For importing graphics
+\usepackage{hyphenat}     % Hyphenation that can break lines
+\usepackage{lipsum}       % For generating temporary filler text
+\usepackage{listings}     % in-line source code (poorly, consider minted)
+\usepackage{makecell}     % multirow cells
+\usepackage{marginnote}   % For making notes in the margin
+\usepackage{mathtools}    % amsmath extension, adds more math formatting
+\usepackage[protrusion=true,expansion=true,kerning,spacing]{microtype} % better type, spacing
+\usepackage{multirow}     % Multiple row spacing in tables
+\usepackage{nth}          % Typeset 33rd correctly as \nth{33}
+%\usepackage[section]{placeins} % Don't let figs escape their sections
+\usepackage{rotating}     % Rotates any object, note sideways != sidewaysfigure
+%\usepackage[all=normal]{savetrees} % For when space is tight, read manual and
+                          % selectively enable things. CAN BREAK CONF STYLES!!
+%\usepackage{siunitx}      % SI units and significant figures
+\usepackage{soul}         % Provides \hl{} for highlighting
+\usepackage[subrefformat=parens]{subcaption}   % Replaces both subfig and subfigure
+\usepackage{tabularx}     % Complicated table creation
+\usepackage{textcomp}     % Provides \textmu for upright mu's
+\usepackage{threeparttable} % Add footnotes to a table
+\usepackage{tikz}         % Because drawing with text commands seems like a good idea
+\usepackage{units}        % For nice fractions, \nicefrac{1}{2} --> 1/2
+\usepackage{url}          % Pretty printing of hyperlinks
+\usepackage[usenames,dvipsnames,svgnames]{xcolor} % Allow the use and definition of colors
+\usepackage{xspace}
+\usepackage{xfrac}
+
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
+% https://tex.stackexchange.com/questions/74170/have-new-line-between-paragraphs-no-indentation
+\usepackage[parfill]{parskip}
+
+\usepackage{setspace}
+\singlespacing
+
+% Must be last imports
+\usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
+\hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+% Stylize footnotes
+\makeatletter
+% Default:
+% \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\renewcommand{\@makefnmark}{\makebox{\normalfont[\textcolor{red}{\@thefnmark}]}}
+\renewcommand\@makefntext[1]{%
+  \parindent 1em\noindent
+            \hb@xt@1.8em{%
+              \hss\normalfont\textcolor{red}{\@thefnmark}}~#1}
+\makeatother
+
+
+\graphicspath{{./img/}} % Specifies the directory where pictures are stored
+
+% No space between bibliography items:
+\let\oldthebibliography=\thebibliography
+  \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0.5ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+% Some macros that a broadly useful:
+\newcommand{\uW}{{\textmu}W\xspace}
+\newcommand{\uw}{{\textmu}W\xspace}
+\newcommand{\uA}{{\textmu}A\xspace}
+\newcommand{\uV}{{\textmu}V\xspace}
+\newcommand{\um}{{\textmu}m\xspace}
+\newcommand{\us}{{\textmu}s\xspace}
+\newcommand{\uF}{{\textmu}F\xspace}
+\newcommand{\uJ}{{\textmu}J\xspace}
+\newcommand{\iic}{I$^2$C\xspace}
+\newcommand{\vdd}{V$_{\textnormal{DD}}$\xspace}
+\newcommand{\mm}{m\textsuperscript{2}\xspace}
+
+% Break URLs properly (thanks to Alex Halderman)
+\def\UrlBreaks{\do-\do\.\do\@\do\\\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,\do\?\do\'\do+\do\=\do\#}
+\def\UrlBigBreaks{\do\:\do\/}
+
+% Don't typset URLs in tt font
+\urlstyle{sf}
+
+\begin{document}
+
+% No number first page
+\thispagestyle{empty}
+
+\begin{center}
+  \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
+    \large \textbf{\textsf{ List of References }} &
+    \large \textbf{\textsf{ Branden Ghena }} &
+    \large \textbf{\textsf{ brghena@berkeley.edu }} \\
+    \toprule
+  \end{tabular*}
+\end{center}
+
+\begin{adjustwidth}{0.5in}{}
+\begin{large}
+
+\textbf{Prabal Dutta}\\
+Associate Professor\\
+University of California, Berkeley\\
+\href{mailto:prabal@berkeley.edu}{prabal@berkeley.edu}\\
++1.510.664.9004\\
+
+\vspace{-15pt}
+550C Cory Hall\\
+Berkeley, CA 94720
+
+\medskip
+\textbf{Sanjit Seshia}\\
+Professor\\
+University of California, Berkeley\\
+\href{sseshia@berkeley.edu}{sseshia@berkeley.edu}\\
+\textit{Please send reference solicitations to} \href{sseshia+recos@berkeley.edu}{sseshia+recos@berkeley.edu}\\
++1.510.643.6968\\
+
+\vspace{-15pt}
+566 Cory Hall\\
+Berkeley, CA 94720
+
+\medskip
+\textbf{Philip Levis}\\
+Associate Professor\\
+Stanford University\\
+\href{pal@cs.stanford.edu}{pal@cs.stanford.edu}\\
+\textit{Please send reference solicitations to Ann Harara} \href{ann1083@stanford.edu}{ann1083@stanford.edu}\\
++1.650.725.9046\\
+
+\vspace{-15pt}
+409 Gates Hall\\
+Stanford, CA 94305
+
+\medskip
+\textbf{Mark Brehob}\\
+Kurt Metzger Collegiate Lecturer\\
+University of Michigan\\
+\href{brehob@umich.edu}{brehob@umich.edu}\\
++1.734.764.0525\\
+
+\vspace{-15pt}
+4632 Beyster Building\\
+2206 Hayward Street\\
+Ann Arbor, MI 48109
+
+\medskip
+\textbf{Amit Levy}\\
+Assistant Professor\\
+Princeton University\\
+\href{aalevy@cs.princeton.edu}{aalevy@cs.princeton.edu}\\
++1.609.258.8701\\
+
+\vspace{-15pt}
+307 Computer Science\\
+35 Olden Street\\
+Princeton, NJ 08540
+
+
+
+
+\end{large}
+\end{adjustwidth}
+
+\end{document}
+
