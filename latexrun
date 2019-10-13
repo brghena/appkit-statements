@@ -1608,8 +1608,8 @@ class BibTeX(Task):
         # Original code:
         #env['BIBINPUTS'] = self.__path_join(os.getcwd(), env.get('BIBINPUTS'))
         #env['BSTINPUTS'] = self.__path_join(os.getcwd(), env.get('BSTINPUTS'))
-        env['BIBINPUTS'] = self.__path_join(os.getcwd() + '/tex/', env.get('BIBINPUTS'))
-        env['BSTINPUTS'] = self.__path_join(os.getcwd() + '/tex/', env.get('BSTINPUTS'))
+        env['BIBINPUTS'] = self.__path_join(os.getcwd() + '/statements/', env.get('BIBINPUTS'))
+        env['BSTINPUTS'] = self.__path_join(os.getcwd() + '/statements/', env.get('BSTINPUTS'))
 
         try:
             verbose_cmd(args, cwd, env)
