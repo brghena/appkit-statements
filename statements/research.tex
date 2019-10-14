@@ -56,6 +56,7 @@
 \usepackage{tikz}         % Because drawing with text commands seems like a good idea
 \usepackage{units}        % For nice fractions, \nicefrac{1}{2} --> 1/2
 \usepackage{url}          % Pretty printing of hyperlinks
+\usepackage{wrapfig}      % Figures, now with text wrapping!
 \usepackage[usenames,dvipsnames,svgnames]{xcolor} % Allow the use and definition of colors
 \usepackage{xspace}
 \usepackage{xfrac}
@@ -86,7 +87,7 @@
 \makeatother
 
 
-\graphicspath{{./img/}} % Specifies the directory where pictures are stored
+\graphicspath{{./images/}} % Specifies the directory where pictures are stored
 
 % No space between bibliography items:
 \let\oldthebibliography=\thebibliography
@@ -216,33 +217,78 @@
   \end{tabular*}
 \end{center}
 
-I have always been drawn to the intersection of computers and the real world.
-One aspect that has always drawn me to the area was the many domains of
-expertise that are combined in order to create an embedded system. In the
-course of my research, I've worked on circuits and websites and everything in
-between.
+I never could narrow down my interest in computers to any single idea. I'm
+excited by circuits and operating systems, networks and architectures, and
+human interaction and programming languages.
+%
+Embedded systems was a natural fit for me.
+Connecting computation and the real world requires expertise across many
+domains, and in the course of my research, I've worked on circuits, websites
+and everything in between.
+%I have always been drawn to the intersection of computers and the real world.
+%One aspect that has always drawn me to the area was the many domains of
+%expertise that are combined in order to create an embedded system. In the
+%course of my research, I've worked on circuits and websites and everything in
+%between.
 
-My research focuses on two areas: investigations of low-power networking
-standards and platforms for enabling future research.
+%My research focuses on two areas: investigations of low-power networking
+%standards and platforms for enabling future research.
+%
+In my research, I focus on understanding and developing mechanisms to support
+the Internet of Things.
+%
+The first major aspect of this has been understanding and exploring the
+\textit{capabilities of low-power network standards}. I am interested in how the
+standards that exist today can support the needs of tomorrow's sensor systems.
+%
+The second aim of my research has been on the \textit{development of platforms to
+enable cross-disciplinary research}. My goal is to create tools that can be used
+for new developments in another domain while also demonstrating new
+capabilities or needs for the embedded systems community.
+%
+Finally, I am a teacher as well as a researcher and I consider \textit{including
+undergraduates in research} is a valuable opportunity for both the student and
+the researcher. As a grad student, I advised nine undergraduates and two high school
+students, four of whom have gone on to pursue Ph.D.\ programs in computer science.
 
-\textbf{\textsf{\large Low-Power Networking Standards.}}\\ Early research in
-wireless sensor networks focused on the creation of new network standards,
-especially access control mechanisms. Today, many of these techniques have been
-incorporated into wireless networking standards and the sensor network world
-can, for the first time, consider the use of existing standards rather than the
-development of new ones to meet application needs. My interest has been the
-study of these existing network schemes in order to determine which
-applications they can best serve and where they are still lacking.
+\bigskip
+\textbf{\textsf{\large Low-Power Networking Standards.}}\\
+Early research in wireless sensor networks focused on the creation of new
+network standards, especially access control mechanisms. Today, many of these
+techniques have been incorporated into wireless networking standards and the
+sensor network world can, for the first time, consider the use of existing
+standards rather than the development of new ones to meet application needs. My
+interest has been the study of these existing network schemes in order to
+determine which applications they can best serve and under which conditions
+they are insufficient.
 
-\textbf{Low-Power Wide-Area Networks} (LPWANs) address a major deficit in prior wireless
-networks: wide-area machine-to-machine communications. While solutions exist in
-the local-area realm, human-centric cellular networks that focus on download
-throughput have long been the only players if long-range communications are
-desired. Over the last several years, however, protocols like LoRaWAN that
-operate on the unlicensed 915 MHz band in the United States have grown to fill
-this void. Their use of simple protocols and ability to transmit at ranges over
-a kilometer while drawing only a few hundred milliwatts enables exciting new
-applications. [FIGURE Range vs Throughput]
+\begin{wrapfigure}{}{0.4\columnwidth}
+  \vspace{-1em}
+  \centering
+  \includegraphics[width=0.39\columnwidth]{network-range-throughput}
+  %\vspace{-1em}
+  \caption*{\sffamily \scriptsize
+   LPWANs enable low-bitrate, long-range communication.
+  }
+  \label{fig:lpwans}
+  \vspace{-1em}
+\end{wrapfigure}
+
+\textbf{Low-Power Wide-Area Networks} (LPWANs) address a major deficit in prior
+wireless networks: wide-area, machine-to-machine communications.
+%
+%While many solutions exist in the local-area realm,
+High-power, human-centric cellular networks
+%that focus on download throughput
+have long been the only players if
+long-range communications are desired.
+%
+Over the last several years, however, protocols such as LoRaWAN that operate on
+the unlicensed communication bands have grown to fill this void. Their use of
+simple protocols and their ability to transmit at ranges of several kilometers
+while drawing only a few hundred milliwatts enables exciting new applications.
+
+%%%HERE
 
 However, as we investigated these new networks, we realized that they face
 problems when attempting to serve real-world applications~\cite{ghena19lpwans}. As we
@@ -377,7 +423,7 @@ want to provide other students with that opportunity. In my mind, mentorship is
 part of the goal of academic research. At Michigan, I advised nine
 undergraduates and two high school students working on various projects. Five
 were included as authors on lab publications (mostly demo and workshop papers,
-but also two conference papers) and four have gone on to pursue PhDs in
+but also two conference papers) and four have gone on to join Ph.D.\ programs in
 computer science, including two women. I see my role as a mentor to encourage
 these students to explore new domains and build deeper expertise. The most
 important thing is for them to have a clear goal for what skills they're hoping
