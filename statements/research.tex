@@ -217,6 +217,9 @@
   \end{tabular*}
 \end{center}
 
+% Hide all the dumb underfull hbox warnings
+\hbadness=10000
+  
 I never could narrow down my interest in computers to any single idea. I'm
 excited by circuits and operating systems, networks and architectures, and
 human interaction and programming languages.
@@ -262,16 +265,16 @@ interest has been the study of these existing network schemes in order to
 determine which applications they can best serve and under which conditions
 they are insufficient.
 
-\begin{wrapfigure}{}{0.4\columnwidth}
-  \vspace{-1em}
+\begin{wrapfigure}{}{0.5\columnwidth}
+  \vspace{-1.5em}
   \centering
-  \includegraphics[width=0.39\columnwidth]{network-range-throughput}
+  \includegraphics[width=0.49\columnwidth]{network-range-throughput}
   %\vspace{-1em}
   \caption*{\sffamily \scriptsize
    LPWANs enable low-bitrate, long-range communication.
   }
   \label{fig:lpwans}
-  \vspace{-1em}
+  \vspace{-2em}
 \end{wrapfigure}
 
 \textbf{Low-Power Wide-Area Networks} (LPWANs) address a major deficit in prior
@@ -288,118 +291,193 @@ the unlicensed communication bands have grown to fill this void. Their use of
 simple protocols and their ability to transmit at ranges of several kilometers
 while drawing only a few hundred milliwatts enables exciting new applications.
 
-%%%HERE
+As we investigated these new networks, however, we realized that they face
+significant challenges when attempting to serve real-world
+applications~\cite{ghena19lpwans}.
+%
+%As we
+%began our investigations, we realized a new metric was needed. Neither range
+%nor throughput were sufficient metrics for studying LPWANs. We defined bit
+%flux, a measure of throughput over coverage area as a way of comparing them.
+%This metric can also be used to measure application needs which allows
+%suitability to be easily measured. Comparing the bit flux requirements of
+%several example applications and the bit flux that LPWANs provide, we find that
+%unlicensed LPWANs are only suitable for low-rate, sparse sensing applications. 
+%
+LPWANs are suffering from two major issues.
+%
+The first is a \textit{capacity} issue: low-throughput over a very wide area
+results in a very limited amount of throughput available for each deployed
+device.
+%
+In addition to the capacity issues, LPWANs deployed in the unlicensed bands
+face a \textit{coexistence} problem. The long range of these networks means
+that many stakeholders will overlap in network coverage areas, especially in
+urban environments.
+%
+These challenges are not insurmountable, but without solutions they will
+ultimately stall adoption of these nascent technologies.
+%These problems are not insurmountable, but neither can they be ignored. Without
+%solutions, unlicensed-band, long-range networking will be eclipsed by coming
+%cellular protocols.
+%
+%We argue that these problems must be solved in the near-term in order to allow
+%unlicensed-band, long-range networking to be successful.
 
-However, as we investigated these new networks, we realized that they face
-problems when attempting to serve real-world applications~\cite{ghena19lpwans}. As we
-began our investigations, we realized a new metric was needed. Neither range
-nor throughput were sufficient metrics for studying LPWANs. We defined bit
-flux, a measure of throughput over coverage area as a way of comparing them.
-This metric can also be used to measure application needs which allows
-suitability to be easily measured. Comparing the bit flux requirements of
-several example applications and the bit flux that LPWANs provide, we find that
-unlicensed LPWANs are only suitable for low-rate, sparse sensing applications. 
+\textbf{Bluetooth Low Energy} (BLE) is a common communication protocol in
+smartphones, laptops, and other consumer products, including many Internet of
+Things devices.
+%
+BLE communication reduces or eliminates listening costs for energy constrained
+devices, avoids interference with channel diversity, and allows
+intercommunication between sensors and people through personal devices.
+%
+BLE advertisements---simple, periodic, broadcast messages intended for device
+discovery---are used today by deployed ``beacons'' for localization and sensing
+purposes.
+%Using
+%advertisements, a single-hop, star-topology network can be created in full
+%compliance with the BLE specification that allows any number of devices to send
+%data to any number of gateways[cite??].
 
-LPWANs are suffering from two major issues. The first is a capacity issue:
-low-throughput over a very wide area results in a very limited amount of
-throughput available to each deployed device. In addition to the capacity
-issues, LPWANs deployed in the unlicensed bands face a coexistence problem. The
-long range of these networks means that many stakeholders will overlap in
-network coverage areas, especially in urban environments. We argue that these
-problems must be solved in the near-term in order to allow unlicensed-band,
-long-range networking to be successful.
-
-\textbf{Bluetooth Low Energy} (BLE) is a common communication protocol in smartphones,
-laptops, and other consumer products, including many Internet of Things
-devices. BLE communication reduces or eliminates listening costs for energy
-constrained devices, avoids interference via channel diversity, and allows
-intercommunication between sensors and people through personal devices. My
-explorations of BLE capabilities has focused on BLE advertisements—simple,
-periodic, broadcast messages intended for device discovery. Using
-advertisements, a single-hop, star-topology network can be created in full
-compliance with the BLE specification that allows any number of devices to send
-data to any number of gateways[cite??].
-
-My research began by composing models that describe reception rates for BLE
-advertisements. Advertisements are sent without any coordination or
-channel-sense mechanism, essentially an ALOHA[cite] access control mechanism,
-which leads to packet collisions as a primary mechanism of data loss.
+My research has focused on understanding network models for BLE advertisements
+in order to plan reliable advertisement network deployments.
+%
+Given the simple access control mechanisms used, many transmissions means many
+packet collisions, and dense deployments could fail due to unreliable
+communication.
+%
+%My research began by composing models that describe reception rates for BLE
+%advertisements. Advertisements are sent without any coordination or
+%channel-sense mechanism, essentially an ALOHA[cite] access control mechanism,
+%which leads to packet collisions as a primary mechanism of data loss.
 Developing analytical models for these packet collisions allows an upper bound
-of reception rate for a deployed network to be determined in advance based on
-the number of deployed devices and their transmission rate. These models allow
-us to recognize issues with network deployments that are due to external
-factors rather than packet collisions alone. I studied a deployment of BLE
-power meters[cite] that significantly underperformed expectations, finding that
-problems with the gateway BLE hardware were at fault.
+of reception rate for a deployed network to be determined prior to deployment
+based on the number of deployed devices and their transmission rate.
+%
+Applying these models to results from a deployment of BLE power
+meters~\cite{debruin15powerblade}, I discovered it significantly underperformed
+expectations and that the gateway BLE hardware was at fault, allowing modifications
+to be made for more successful future deployments.
 
-\textbf{Future directions.} The biggest potential for disruption in today's low-power
-wireless space is the emergence of new cellular protocols targeted at
-machine-to-machine communication. LTE-M and NB-IoT arose from lengthy
-development by 3GPP and are finally supported by network operators in the US
-and world-wide. Particularly these networks could come to dominate the nascent
-LPWAN space, but they have applications to the indoor space as well. The ideal
-of infrastructure-free deployments is highly motivating. From a
-resource-constrained systems view, how to successfully use these protocols to
-serve application needs is an open question. While they can be low energy, they
-remain high power, necessitating batching of messages to maintain energy
-budgets. Delay-tolerant network techniques may be helpful in order to maintain
-existing network primitives while dealing with necessary high latency.
+\textbf{Future directions.}
+%
+%One of the biggest potential disruptors in today's low-power wireless space is
+The emergence of new cellular protocols targeted at machine-to-machine
+communication has a large potential for disrupting the low-power wireless
+space.
+%
+LTE-M and NB-IoT arose from lengthy development by 3GPP and are finally
+supported by network operators in the US and world-wide. Particularly these
+networks could come to dominate the nascent LPWAN space, but they have
+applications to the indoor space as well---the ideal of infrastructure-free
+deployments is highly motivating.
+%
+From a resource-constrained systems view, how to successfully use these
+protocols to serve application needs remains an open question.
+%
+While they can be low energy, they remain high power, necessitating high-latency,
+batched communication to maintain energy budgets.
+%Delay-tolerant network techniques may be
+%helpful in order to maintain existing network primitives while dealing with
+%necessary high latency.
 
+\bigskip
 \textbf{\textsf{\large Enabling Research through Platform Development.}}\\
-The embedded systems field creates many artifacts. In my own career I've
-created sensors, simulations, protocols, and libraries that are capable of
-accomplishing many tasks. I've always been particularly motivated by the
-creation of tools that enable exploration in new domains that were previously
-unapproachable.
+By connecting computation and the real world, embedded systems are inhernetly
+cross-disciplinary in nature.
+%
+Research throughout STEM fields can benefit from the creation of platforms that
+can enable domain-specific research goals,
+%reduce the burden of their domain-specific research goals,
+and the embedded systems community has a long history of collaboration with
+domain scientists.
+%
+I am particularly motivated by the ability to increase the impact of my research
+by serving my own research interests while simultaneously providing tools for others.
+%I am particularly motivated by the creation of tools that enable exploration in
+%new domains that were previously burdensome to explore.
+
+\begin{wrapfigure}{l}{0.6\columnwidth}
+  \vspace{-1em}
+  \centering
+  \includegraphics[width=0.59\columnwidth]{signpost_software_revised}
+  %\vspace{-1em}
+  \caption*{\sffamily \scriptsize
+    Signpost provides shared access to services for attached application modules.
+  }
+  \label{fig:signpost}
+  \vspace{-1em}
+\end{wrapfigure}
 
 \textbf{Signpost} aims to reduce the development burden for city-scale sensing
-projects[cite] [FIGURE of architecture]. City-scale sensing holds a lot of
+projects~\cite{adkins18signpost}. City-scale sensing holds a lot of
 promise and interest, and for good reason: applications such as pedestrian
 route planning based on air quality, noise pollution monitoring, and automatic
 emergency response alerts can all improve the quality of life for a city's
 inhabitants. Developing a new sensing system requires much more than just an
 impactful idea, however. Hardware must be designed to support a new sensor with
 energy, communications, storage, and processing capability. These requirements
-make it particularly challenging to perform short-term, exploratory research
+make it particularly challenging to perform the short-term, exploratory research
 necessary to test out ideas in the first place.
 
 The Signpost hardware and software platform addresses these challenges by
 providing commonly required resources through a modular interface. Hosted
 modules provide sensors and application processing while Signpost provides
 energy, network connection, storage, time, location, and
-Linux-as-a-coprocessor. In order to enable multiple simultaneous deployments,
-Signpost meters shared resources such as energy and communication bandwidth in
-order to provide fairness. The API for accessing these resources is abstracted
+Linux-as-a-coprocessor.
+%
+The API for accessing these resources is abstracted
 over a shared I2C bus and has been implemented for several embedded software
 platforms including Tock, mbed, and Arduino.
+%
+Signpost supports multiple application modules simultaneously in order to
+enable overlapping deployments. Resource usage is metered in order to provide
+fair use across multiple tenants.
+%Signpost meters shared resources such as energy and communication bandwidth in
+%order to provide fairness.
+
+\begin{wrapfigure}{}{0.5\columnwidth}
+  %\vspace{-1em}
+  \centering
+  \includegraphics[width=0.49\columnwidth]{memory_layout}
+  %\vspace{-1em}
+  \caption*{\sffamily \scriptsize
+   Tock enables multiprogramming on memory-constrained systems.
+  }
+  \label{fig:tock}
+  \vspace{-1em}
+\end{wrapfigure}
 
 \textbf{Tock} addresses the need for modern operating systems support on
-resource-constrained, microcontroller-based systems[cite] [Figure of Tock
-kernel and apps]. While microcontrollers are the base compute platform for
+resource-constrained, microcontroller-based systems~\cite{levy17multiprogramming}.
+While microcontrollers are the base compute platform for
 embedded systems and the Internet of Things, OS support for them has critically
-lagged behind. Most modern embedded OSes compile a kernel and single
-application into a single binary that is loaded onto the microcontroller
-without any layered protection mechanisms. Support for multiprogramming is
-nearly unheard of. If you only have 64 kB of RAM for the entire system sharing
-it was not even a consideration.
+lagged behind.
+Support for multiprogramming is practically nonexistent Most modern embedded
+OSes compile a kernel and single application into a combined binary that is
+loaded onto the microcontroller without any layered protection mechanisms.
+%If you only have 64\,kB of RAM for
+%the entire system sharing it was not even a consideration.
 
 Tock demonstrates that reliable, safe, and dynamic multiprogramming is indeed
-possible on microcontrollers. Tock enforces a system-call boundary between
+possible on memory-constrained systems. Tock enforces a system-call boundary between
 applications and the kernel using new hardware features that allow for
 segment-based memory protection. However, even the kernel itself is composed of
-many device drivers that may not all be trustworthy. We demonstrate the use of
-Rust, a type-safe systems language with memory efficiency and performance close
-to C, to enforce driver isolation[cite].
+many device drivers that may not all be trustworthy. To solve this, we leverage
+advancements from the programming languages community and use Rust, a type-safe
+systems language with memory efficiency and performance close to C, to enforce
+driver isolation~\cite{levy17rustkernel}.
 
 \textbf{Future Directions.} Platforms research benefits not only other communities who
 can use the research platform as a tool, but also my own community of embedded
-systems researchers by elucidating which areas remain under-developed. While
+systems researchers by illuminating areas that remain under-developed. While
 resources like memory, processor time, and even network access are commonly
 shared, energy is much less widely considered. Isolation between applications
 on an energy-harvesting platform is possible but requires new policies and
-APIs[cite].
+APIs~\cite{adkins17energy}.
 
-As I have developed platforms, I realized a trend has been occurring towards
+As I have developed platforms, I have recognized a trend towards
 multi-microcontroller designs. Rather than handle complex software interactions
 between tasks such as networking and sensing, embedded platforms have become
 distributed systems, with multiple special-purpose compute modules on a single
@@ -407,29 +485,47 @@ board. While this design is increasingly common, support for it in embedded
 software is entirely nonexistent, with inter-microcontroller communication
 recreated in an ad hoc fashion for each platform. A need has arisen for
 software primitives that support message passing, task migration, and platform
-management in a principled manner[cite]. Open-Source Research. Research,
-especially publicly funded research, should benefit the public. I am committed
-to making my research publicly available. This means not just the papers, but
-the hardware and software designs as well. Whenever possible, my first step in
-starting a new research project is creating a public Github repo for it.
-Platforms research is particularly amenable to this goal, and all hardware and
-software designs for both Signpost and Tock are publicly available.
+management in a principled manner for resource-constrained systems~\cite{ghena19distributed}.
 
+%\bigskip
+%\textbf{\textsf{\large Open-Source Research.}}\\
+%Research,
+%especially publicly funded research, should benefit the public. I am committed
+%to making my research publicly available. This means not just the papers, but
+%the hardware and software designs as well. Whenever possible, my first step in
+%starting a new research project is creating a public Github repo for it.
+%Platforms research is particularly amenable to this goal, and all hardware and
+%software designs for both Signpost and Tock are publicly available.
+
+\bigskip
 \textbf{\textsf{\large Mentoring Undergraduate Research.}}\\
 Working with undergraduate researchers has always been a significant part of my
-research goals. My own experiences as an undergraduate researcher taught me
-both engineering and communications skills that serve me to this day, and I
-want to provide other students with that opportunity. In my mind, mentorship is
-part of the goal of academic research. At Michigan, I advised nine
-undergraduates and two high school students working on various projects. Five
-were included as authors on lab publications (mostly demo and workshop papers,
-but also two conference papers) and four have gone on to join Ph.D.\ programs in
-computer science, including two women. I see my role as a mentor to encourage
-these students to explore new domains and build deeper expertise. The most
-important thing is for them to have a clear goal for what skills they're hoping
-to learn in their research, then we determine how we can fit those goals to
-active research projects. Of particular interest to me moving forward is
-supporting undergraduate teams in research and engineering efforts.
+research. My own experiences as an undergraduate researcher taught me both
+engineering and communications skills that serve me to this day, and I want to
+provide other students with that same opportunity to learn and grow. To me,
+mentorship is part of the goal of academic research.
+%
+At Michigan, I advised nine undergraduates and two high school students working
+on various projects. Five were included as authors on lab publications (mostly
+demo and workshop papers, but also two conference papers) and four have gone on
+to join Ph.D.\ programs in computer science, including two women.
+%
+I see my role as a mentor to encourage
+these students to explore new domains and build deeper expertise.
+%
+When mentoring new students, I emphasize that they need to start with a clear
+goal for what skills they're hoping to gain from their research efforts. Almost
+any goals can be fit into active research projects, but the primary focus should
+be ensuring that their efforts benefit them.
+%%The most
+%important thing is for them to have a clear goal for what skills they're hoping
+%to learn in their research, then we determine how we can fit those goals to
+%active research projects.
+%
+I am looking forward to continuing to support undergraduate research in my future
+role.
+%Of particular interest to me moving forward is
+%supporting undergraduate teams in research and engineering efforts.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -445,8 +541,8 @@ supporting undergraduate teams in research and engineering efforts.
 \nameusesave
 \nameuse{false}
 
-\medskip
-\textbf{\textsf{\large References}}
+\vfill\eject
+\textbf{\textsf{\Large References}}
 
 %\bibliographystyle{plain}
 %\bibliography{references}
