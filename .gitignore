@@ -1,3 +1,4 @@
 latex.out/
 *.swp
 .latexrun.db.lock
+.DS_Store
