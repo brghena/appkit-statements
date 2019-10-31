@@ -1,0 +1,129 @@
+\documentclass{letter}
+\usepackage[top=1in, bottom=1in, left=1.5in, right=1.5in]{geometry}
+
+\usepackage[ttscale=.875]{libertine}
+\usepackage[T1]{fontenc}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{graphicx} % Required for including pictures
+\usepackage[protrusion=true,expansion=true,kerning,spacing]{microtype} % better type, spacing
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage[usenames,dvipsnames,svgnames]{xcolor} % Allow the use and definition of colors
+\usepackage{url}
+\usepackage{xspace}       % Intelligently add spaces after commands
+\usepackage{wrapfig}
+
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
+% Must be last imports
+\usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
+\hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+\graphicspath{{images/}} % Specifies the directory where pictures are stored
+
+
+% Don't typset URLs in tt font
+\urlstyle{sf}
+
+
+\signature{%
+\vspace{-4em}
+\hspace{-.5em}\includegraphics[width=1.75in]{signature} \\%
+Branden Ghena \\%
+brghena@berkeley.edu \\%
++1.734.755.6653 \\%
+\url{https://brandenghena.com}
+}
+\address{Branden Ghena \\ 2206 Jefferson Ave, Unit B \\ Berkeley, CA 94703}
+
+% Change indentation of closing section
+\longindentation=3in
+
+\begin{document}
+\begin{letter}{}
+\date{}
+
+\opening{Dear Search Committee Members:}
+
+%% Intro
+I am writing to apply for a
+%\hl{lecturer}
+assistant professor, teaching stream
+position in the
+%\hl{School of Computer Science \& Engineering}
+Department of Electrical and Computer Engineering
+at the
+%\hl{University of Washington}.
+University of Toronto.
+%
+I am currently completing my Ph.D.\ at the University of California, Berkeley
+in the Department of Electrical Engineering and Computer Sciences, where I
+expect to complete my dissertation work during the summer of 2020.
+
+%% Teaching
+My teaching has covered a variety of experiences including
+large lecture halls, small-group discussions, and individual mentoring.
+%
+This past summer I was an instructor of record for a 200 student computer
+organization course at UC Berkeley, and in the prior fall I redesigned the lab
+curriculum for Berkeley's embedded systems course.
+%and created a new hardware and software platform to support
+%student learning.
+%
+My experiences in teaching include topics in C programming, digital logic,
+processor architecture, parallelism, and wireless networking.
+%
+%% Teaching desires
+%My experiences have given me a broad set of skills across the hardware and
+%software systems domains that I am excited to share with students.
+%
+I am particularly eager to teach
+introductory systems courses such as computer organization or systems programming,
+introductory programming or data structures courses,
+upper-level systems courses such as computer architecture or operating systems,
+and embedded systems courses at any level.
+
+%% Research
+My expertise as an embedded systems researcher spans multiple disciplines
+including wireless communications, mobile computing, computer architecture, and
+operating systems.
+%
+The focus of my work is the application of these domains toward understanding
+and developing mechanisms to support the Internet of Things.
+%
+My research is often collaborative and has included mentorship of nine
+undergraduates and two high school students, four of whom have gone on to
+their own Ph.D.\ studies.
+
+%% Who might be familiar with my work
+
+%% Diversity
+An important part of my teaching is creating an inclusive environment where
+everyone is welcome. I listen and learn from my students and colleagues
+in order to implement policies that will support diversity.
+%
+This includes steps like using anonymity while grading to avoid bias and hiring
+a diverse course staff so students have role models to identify with in the community.
+
+%% Enclosures
+I have attached
+%\hl{list here}.
+my curriculum vitae
+%research statement,
+and teaching statement.
+%and diversity statement.
+In addition, I have attached teaching evaluations from courses I have taught
+as an instructor or TA
+and a sample course syllabus.
+%
+Thank you very much for your consideration, and I look forward to your response.
+
+\closing{Sincerely,}
+
+\end{letter}
+\end{document}
