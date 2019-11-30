@@ -1,6 +1,6 @@
 LATEXRUN ?= ./latexrun
 
-all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf brghena-references.pdf brghena-syllabus.pdf cover_letters
+all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf brghena-video.pdf brghena-references.pdf brghena-syllabus.pdf cover_letters
 
 brghena-teaching.pdf: statements/teaching.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
@@ -22,6 +22,9 @@ brghena-syllabus.pdf: syllabus/syllabus.tex
 	rm pdfs/syllabus-cover.pdf
 
 brghena-references.pdf: references/references.tex
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
+
+brghena-video.pdf: evals/video.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
 .PHONY: force
