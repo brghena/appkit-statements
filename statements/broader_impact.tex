@@ -1,0 +1,302 @@
+\documentclass[11pt]{article} % Default font size is 10 pt, it can be changed here
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage[ttscale=.875]{libertine} \usepackage[T1]{fontenc}
+
+\PassOptionsToPackage{usenames,dvipsnames,svgnames}{xcolor}
+
+\usepackage{adjustbox}    % Auto-resize table content (eg Opo SenSys'14 rel)
+\usepackage{amsfonts}     % Adds math fonts, commands such as \begin{align}
+\usepackage{amsmath}      % Provides align* environment
+\usepackage{array}        % Tables for use in math mode
+\usepackage{balance}      % For balanced columns on the last page
+\usepackage{booktabs}     % Elegant table-formatting library
+\usepackage{bold-extra}   % Provides bf+sc (only in textbf+textsc env.)
+\usepackage{bytefield}    % Formatting and layout of packets / bytefields
+\usepackage[skip=5pt]{caption}
+%\usepackage{colortbl}     % Color table cells
+\usepackage{comment}      % Provides \begin,\end{comment} for large blocks
+\usepackage{cprotect}     % Allows verbatim, other formatting in macro args
+\usepackage[ampersand]{easylist} % Simpler list syntax
+\usepackage{endnotes}     % Footnotes pushed to the end of a document
+\usepackage{enumitem}     % Allow customizations of itemize/enumerate env's
+\usepackage{environ}      % Necessary for the placefigure creation
+\usepackage{float}        % Allow use of [H] to force figure placement
+\usepackage{gensymb}      % Adds useful symbols w/out math mode, e.g. \degree
+\usepackage{graphicx}     % For importing graphics
+\usepackage{hyphenat}     % Hyphenation that can break lines
+\usepackage{lipsum}       % For generating temporary filler text
+\usepackage{listings}     % in-line source code (poorly, consider minted)
+\usepackage{makecell}     % multirow cells
+\usepackage{marginnote}   % For making notes in the margin
+\usepackage{mathtools}    % amsmath extension, adds more math formatting
+\usepackage[protrusion=true,expansion=true,kerning,spacing]{microtype} % better type, spacing
+\usepackage{multirow}     % Multiple row spacing in tables
+\usepackage{nth}          % Typeset 33rd correctly as \nth{33}
+%\usepackage[section]{placeins} % Don't let figs escape their sections
+\usepackage{rotating}     % Rotates any object, note sideways != sidewaysfigure
+%\usepackage[all=normal]{savetrees} % For when space is tight, read manual and
+                          % selectively enable things. CAN BREAK CONF STYLES!!
+%\usepackage{siunitx}      % SI units and significant figures
+\usepackage{soul}         % Provides \hl{} for highlighting
+\usepackage[subrefformat=parens]{subcaption}   % Replaces both subfig and subfigure
+\usepackage{tabularx}     % Complicated table creation
+\usepackage{textcomp}     % Provides \textmu for upright mu's
+\usepackage{threeparttable} % Add footnotes to a table
+\usepackage{tikz}         % Because drawing with text commands seems like a good idea
+\usepackage{units}        % For nice fractions, \nicefrac{1}{2} --> 1/2
+\usepackage{url}          % Pretty printing of hyperlinks
+\usepackage[usenames,dvipsnames,svgnames]{xcolor} % Allow the use and definition of colors
+\usepackage{xspace}
+\usepackage{xfrac}
+
+% Stop microtype from complaining
+\microtypecontext{spacing=nonfrench}
+
+% https://tex.stackexchange.com/questions/74170/have-new-line-between-paragraphs-no-indentation
+\usepackage[parfill]{parskip}
+
+\usepackage{setspace}
+\singlespacing
+
+% Must be last imports
+\usepackage[colorlinks=true,citecolor=violet,urlcolor=Navy,linkcolor=black]{hyperref}     % Creates hyperlinks from ref/cite
+\hypersetup{pdfstartview=FitH} % Sets default zoom to 100% width
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref}     % Do the right thing with fig/table references
+
+% Stylize footnotes
+\makeatletter
+% Default:
+% \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\renewcommand{\@makefnmark}{\makebox{\normalfont[\textcolor{red}{\@thefnmark}]}}
+\renewcommand\@makefntext[1]{%
+  \parindent 1em\noindent
+            \hb@xt@1.8em{%
+              \hss\normalfont\textcolor{red}{\@thefnmark}}~#1}
+\makeatother
+
+
+\graphicspath{{./img/}} % Specifies the directory where pictures are stored
+
+% No space between bibliography items:
+\let\oldthebibliography=\thebibliography
+  \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0.5ex}%
+  }%
+  {%
+    \end{oldthebibliography}%
+  }
+
+% Some macros that a broadly useful:
+\newcommand{\uW}{{\textmu}W\xspace}
+\newcommand{\uw}{{\textmu}W\xspace}
+\newcommand{\uA}{{\textmu}A\xspace}
+\newcommand{\uV}{{\textmu}V\xspace}
+\newcommand{\um}{{\textmu}m\xspace}
+\newcommand{\us}{{\textmu}s\xspace}
+\newcommand{\uF}{{\textmu}F\xspace}
+\newcommand{\uJ}{{\textmu}J\xspace}
+\newcommand{\iic}{I$^2$C\xspace}
+\newcommand{\vdd}{V$_{\textnormal{DD}}$\xspace}
+\newcommand{\mm}{m\textsuperscript{2}\xspace}
+
+% Break URLs properly (thanks to Alex Halderman)
+\def\UrlBreaks{\do-\do\.\do\@\do\\\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,\do\?\do\'\do+\do\=\do\#}
+\def\UrlBigBreaks{\do\:\do\/}
+
+% Don't typset URLs in tt font
+\urlstyle{sf}
+
+\begin{document}
+
+% No number first page
+\thispagestyle{empty}
+
+\begin{center}
+  \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} r}
+    \large \textbf{\textsf{ Broader Impact Statement }} &
+    \large \textbf{\textsf{ Branden Ghena }} &
+    \large \textbf{\textsf{ brghena@berkeley.edu }} \\
+    \toprule
+  \end{tabular*}
+\end{center}
+
+As an instructor, my role comes with a responsibility to consider the broader
+impacts of my teaching beyond any one particular lesson plan.
+%
+I am in a position to demonstrate to my students that diversity in the STEM field
+is valuable and valued.
+%
+When I design course curriculum, I consider how the course can support equity among
+my students and also how it can tie in to other passions they have in life.
+
+%%I hope to be seen as an ally,
+%%as someone students can go to for help and as
+%%someone they can trust to understand their problems.
+%As an instructor, I have a responsibility to proactively promote diversity and
+%provide my students with a classroom environment where everyone has an equal
+%opportunity to learn.
+%This isn't always a simple thing to do.
+%%
+%%Based on my own background,
+%I have assumptions about what it's like to be a student, but my
+%experiences aren't theirs. I will never completely understand what challenges
+%some students face.
+%%
+%To counter this, I want to listen and learn from my students and my colleagues
+%to better understand the challenges they are facing and to make sure that all
+%students feel welcome.
+%%
+%%, and I need to use the knowledge I've gathered to continuously
+%%improve my teaching and create an inclusive environment.
+%%There are also actions that I can take in my teaching to support
+%%students and create an inclusive environment.
+%
+%\medskip
+%\textbf{\textsf{\large Giving Students Equal Opportunity to Succeed.}}\\
+%
+%One of my concerns as a teacher are the unconscious biases I bring with me.
+%%A particular focus of mine is
+%I am particularly concerned with
+%how bias can affect grading.
+%%and whether points are
+%%being awarded fairly.
+%%
+%%Having clear course policies to start with helps ensure that I am treating all
+%%students equally.
+%%
+%Keeping assignments anonymous while grading helps avoid allowing scoring to be
+%based on any information except the solution given~\footnotemark{}. I've found
+%modern tools to be very useful for this, and I use grading software like Gradescope
+%in all of my classes to avoid knowledge of which student's work I'm grading.
+%%
+%Grading cannot always be anonymous, however, especially when judging
+%individualized student projects.
+%%
+%As a TA for the embedded systems class at UC Berkeley, I created rigorous
+%rubrics for project grading to ensure that all students would be assessed by
+%the same criteria.
+%
+%\footnotetext{David J.\ Brennan.
+%``University student anonymity in the summative assessment of written work.''
+%Higher Education Research \& Development. 2008.}
+
+\smallskip
+\textbf{\textsf{\large Teaching for Equity and Inspiration.}}\\
+%
+%Inequity also occurs in the amount of prior knowledge students bring with them
+%to class.
+Choices in curriculum can make STEM fields more accessible to students. 
+%
+An understanding of command line tools, version control systems, and build
+processes is necessary for success in many CS courses. Nevertheless, it is
+often assumed that students either already know these skills or else will learn
+them as they work. This disadvantages students without prior experience.
+%
+%Understanding command line tools, version control systems, and build processes
+%is necessary for success in many CS courses, but students are frequently
+%assumed either to already know these skills or else are expected to learn them
+%as they work, disadvantaging students without prior experience.
+%
+I'm particularly inspired by institutional efforts to address these issues. The
+class Computer Science Pragmatics at Michigan teaches commonly used tools like
+package managers and autocomplete as a one-credit required
+course~\footnotemark{}.
+%
+By making tools for CS an official part of the curriculum, all students in
+later classes are able to equally focus on the new course material rather than
+building ancillary skills.
+%
+I am interested in developing and supporting such a class at other schools.
+
+\footnotetext{Computer Science Pragmatics - \url{https://cspragmatics.com/}}
+
+I also hope to inspire my students to connect computer science
+to passions they have in other fields.
+%
+The embedded systems class at UC Berkeley ends with an open-ended project, where
+students can work on any system that connects to course topics. I
+particularly encourage my students to use their other skills as inspiration.
+%
+One successful student group created gloves that play musical notes as each
+finger flexed. They used their knowledge of music theory to empower the
+project, changing key signature with the flex of a thumb.
+%
+Outside of class, I hold open office hours on embedded systems topics available
+to anyone in the university. Students and faculty working on science
+experiments and art projects frequent the office hours, getting advice on how
+they might approach problems.
+%
+By acting as a public resource on the topic, I hope to inspire others to
+connect computing and the real world together in their projects.
+
+
+
+\smallskip
+\textbf{\textsf{\large Supporting Diversity and Community.}}\\
+Course staff don't just serve as teachers, but also as role models for their
+students. They play an important role as an example of what the STEM community
+should be.
+%
+It is important to me that my students have instructors that they can identify
+with, which in turns means having a course staff that is diverse in terms of
+gender, racial identity, and educational background whenever possible.
+%whenever possible I want a diverse course staff in terms of gender,
+%racial identity, and educational background.
+%
+Recent research has suggested that some techniques used in the hiring process
+can help to create a gender-balanced staff of TAs, even when drawing from an
+unbalanced student population~\footnotemark{}. In their classes, a focus on
+teaching examples and interviews resulted in a more even balance of genders
+among the course staff than focusing on GPA or course grades would have.
+
+\footnotetext{Kamil, Juett, and DeOrio.
+``Gender-balanced TAs from an Unbalanced Student Body.''
+SIGCSE'19. 2019.}
+
+%I have also tried to support diversity in STEM through my research.
+My research efforts also have broader impacts on diversity in STEM.
+%
+As a grad student, it has been a priority of mine to provide opportunities for
+undergraduates to get involved in research. I advised nine undergraduate
+researchers at Michigan, including two women who have both continued on to
+Ph.D.\ programs in computer science.
+%
+As I became more involved with teaching at UC Berkeley, I saw my role as
+someone who could connect students with opportunities to join the research
+community.
+%someone who could encourage students to get involved in research.
+I reached out
+to students to encourage them and offer to answer questions about what it is
+like to be a grad student researcher. Seven of my former students, including
+three women, are now researching with my lab.
+%
+I hope that providing opportunities and encouragement to students can help them
+to gain a sense of belonging in the field.
+%Encouraging students, especially students from diverse backgrounds, to get
+%involved in extracurricular CS activities benefits everyone.
+%Four of
+%these students are now working on Ph.D.s in CS, including two women. Providing
+%opportunities to get more deeply involved in research or teaching can help
+%students to gain a sense of belonging in the field.
+
+%\medskip
+%\textbf{\textsf{\large Future Efforts.}}\\
+%As a teacher and a voice in the department, it will be more important than ever
+%to be an ally. I intend to bring the lessons I have learned to my future
+%classes, providing diverse role models for my students and supporting equal
+%opportunities for learning. However, the techniques and ideas that have
+%resonated with me are only a part of what need to be broad efforts to support
+%diversity, equity, and inclusion in STEM. I look forward to
+%listening and learning from my colleagues and my students
+%
+%to better understand
+%the challenges they are facing and to make sure that all students feel welcome
+%in the CS community.
+
+
+\end{document}
+

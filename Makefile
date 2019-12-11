@@ -1,6 +1,6 @@
 LATEXRUN ?= ./latexrun
 
-all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-evaluations.pdf brghena-video.pdf brghena-references.pdf brghena-syllabus.pdf cover_letters
+all: brghena-teaching.pdf brghena-research.pdf brghena-diversity.pdf brghena-broader-impact.pdf brghena-evaluations.pdf brghena-video.pdf brghena-references.pdf brghena-syllabus.pdf cover_letters
 
 brghena-teaching.pdf: statements/teaching.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
@@ -9,6 +9,9 @@ brghena-research.pdf: statements/research.tex statements/references.bib
 	$(LATEXRUN) --latex-args="-shell-escape" --bibtex-cmd="biber" -Wall $< -o pdfs/$@
 
 brghena-diversity.pdf: statements/diversity.tex
+	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
+
+brghena-broader-impact.pdf: statements/broader_impact.tex
 	$(LATEXRUN) --latex-args="-shell-escape" -Wall $< -o pdfs/$@
 
 brghena-evaluations.pdf: evals/evaluations.tex
